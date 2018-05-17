@@ -11,15 +11,18 @@ class QueuePacketCatcher:
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        self.captured_packets.append(pkt)
-        #print(packet)
-
-        #packet.accept()  # accept the packet
+        #self.captured_packets.append(pkt)
+        print(pkt.summary())
+        print(pkt[IP].ttl, end='')
+        pkt[IP].ttl = -2
+        print("  ==>  ", end='')
+        print(pkt[IP].ttl)
+        packet.accept()
 
     def accept_all(self):
         for pkt in self.captured_packets:
             pkt.accept()
-        print("Accepted all packetinos")
+        print("Accepted all packetinos.")
 
     def start_capture(self):
         nfqueue = NetfilterQueue()
@@ -30,7 +33,6 @@ class QueuePacketCatcher:
             #self.accept_all()
         except KeyboardInterrupt:
             pass
-        print("worked")
 
 catch = QueuePacketCatcher()
 catch.start_capture()
