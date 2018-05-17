@@ -6,23 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>497</width>
-    <height>446</height>
+    <width>471</width>
+    <height>802</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>EvilPostman</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_2">
-    <item row="4" column="0">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Wyślij</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -57,85 +50,208 @@
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
       </property>
-      <widget class="QWidget" name="start">
+      <widget class="QWidget" name="StartTab">
        <attribute name="title">
         <string>Start</string>
        </attribute>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>191</width>
-          <height>17</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Sposób działania:</string>
-        </property>
-       </widget>
-       <widget class="QWidget" name="">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>644</width>
-          <height>151</height>
-         </rect>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
-         <item>
-          <widget class="QRadioButton" name="radioButton">
-           <property name="text">
-            <string>ręczna edycja wybranego pakietu z listy przechwyconych </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Modyfikacja pakietu: 
-1)Aby zmodyfikować pakiet należy wybrać go, z listy przechwyconych 
-pakietów 
-2)Następnie za pomocą wygenerowanych kart </string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="radioButton_2">
-           <property name="text">
-            <string> automatyczne filtorwanie przechyconych pakietów</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>TextLabel</string>
-           </property>
-           <property name="wordWrap">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>50</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Tryb działania modyfikatora pakietów:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_8">
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_opis1_3">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Po wybraniu tego trybu, modyfikacja pakietów przebiega&lt;br&gt;w nasŧępujący sposób:&lt;/p&gt;&lt;p&gt;1) Przechodzimy dalej i włączamy przechwytywanie pakietów &lt;/p&gt;&lt;p&gt;2) Wybieramy pakiet z listy przechwyconych pakietów &lt;/p&gt;&lt;p&gt;3) Modyfikujemy pakiet używając wygenerowanych zakładek &lt;/p&gt;&lt;p&gt;4) Wysyłamy pakiet&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Maximum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>10</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>10</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="0">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>25</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="2">
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>25</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QRadioButton" name="radioButton">
+            <property name="text">
+             <string>Ręczna edycja wybranego pakietu &amp;z listy przechwyconych:</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="3" column="0">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>25</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="1">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>13</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLabel" name="label_opis1">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Po wybraniu tego trybu, modyfikacja pakietów przebiega&lt;br&gt;w nasŧępujący sposób:&lt;/p&gt;&lt;p&gt;1) Przechodzimy dalej i włączamy przechwytywanie pakietów &lt;/p&gt;&lt;p&gt;2) Wybieramy pakiet z listy przechwyconych pakietów &lt;/p&gt;&lt;p&gt;3) Modyfikujemy pakiet używając wygenerowanych zakładek &lt;/p&gt;&lt;p&gt;4) Wysyłamy pakiet&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>25</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QRadioButton" name="radioButton_2">
+            <property name="text">
+             <string>Auto&amp;matyczne filtrowanie przechwyconych pakietów:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>Automatyczne przesyłanie zmodyfikownaych pakietów</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButton_next">
+          <property name="text">
+           <string>Dalej</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="przechywcone">
        <attribute name="title">
@@ -163,6 +279,13 @@ pakietów
             <item>
              <widget class="QPushButton" name="pushButton_2">
               <property name="text">
+               <string>Włącza przechwytywanie pakietów</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="text">
                <string>Edytuj wybrany pakiet</string>
               </property>
              </widget>
@@ -177,7 +300,7 @@ pakietów
        <attribute name="title">
         <string>Ethernet</string>
        </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QStackedWidget" name="stackedWidget_3">
           <property name="minimumSize">
@@ -261,7 +384,7 @@ p, li { white-space: pre-wrap; }
            </layout>
           </widget>
           <widget class="QWidget" name="page_8">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <item>
@@ -406,6 +529,13 @@ p, li { white-space: pre-wrap; }
                </layout>
               </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>Wyślij</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>
@@ -906,12 +1036,24 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>497</width>
-     <height>22</height>
+     <width>471</width>
+     <height>30</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuUstawienia">
+    <property name="title">
+     <string>&amp;Ustawienia</string>
+    </property>
+    <addaction name="actionInterfejs"/>
+   </widget>
+   <addaction name="menuUstawienia"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionInterfejs">
+   <property name="text">
+    <string>Interfejs</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>lineEdit_7</tabstop>
@@ -919,5 +1061,54 @@ p, li { white-space: pre-wrap; }
   <tabstop>lineEdit_9</tabstop>
  </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton_2</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>520</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>156</x>
+     <y>506</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>tabWidget</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>501</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>246</x>
+     <y>48</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>itemChanged(QListWidgetItem*)</signal>
+   <receiver>pushButton_3</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>192</x>
+     <y>199</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>383</x>
+     <y>509</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
