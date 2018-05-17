@@ -1,9 +1,18 @@
 {
     "files": [
         [
-            "evilpostman/gui/*.ui",
-            "evilpostman/gui"
+                "evilpostman/gui/*.ui",
+                "evilpostman/gui"
+        ],
+        [
+                "evilpostman/gui/styles/*.qss",
+                "evilpostman/gui/styles"
+        ],
+        [
+                "evilpostman/gui/resources/*.qrc",
+                "evilpostman/gui/"
         ]
+
     ],
     "hooks": [],
     "pyrcc": "pyrcc5",
