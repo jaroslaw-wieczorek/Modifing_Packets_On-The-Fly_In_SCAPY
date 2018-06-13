@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -136,7 +136,7 @@
          </widget>
         </item>
         <item row="1" column="0" colspan="4">
-         <widget class="QTableWidget" name="sniff_tab_packets_list">
+         <widget class="QTableWidget" name="sniff_tab_list_of_packets">
           <column>
            <property name="text">
             <string>Nr.</string>
@@ -144,7 +144,7 @@
           </column>
           <column>
            <property name="text">
-            <string>Packet</string>
+            <string>Pakiet</string>
            </property>
           </column>
          </widget>
@@ -233,12 +233,7 @@
           </column>
           <column>
            <property name="text">
-            <string>Filtr</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Aktywny</string>
+            <string>Pakiet</string>
            </property>
           </column>
          </widget>
