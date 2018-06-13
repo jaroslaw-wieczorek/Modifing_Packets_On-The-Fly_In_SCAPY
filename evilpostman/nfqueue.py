@@ -20,8 +20,8 @@ class QueuePacketCatcher(Window):
         super(Window, self).__init__()
         self.setupUi(self)
         self.set_fit_width()
-        
         self.captured_packets = list()
+        self.set_sniff_tab_button_sniff(self.start_capture)
 
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
