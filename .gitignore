@@ -89,6 +89,12 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+backup-rules/
+iptables-backup/
+python-netfilterqueue/
+rules
+
+
 
 # Spyder project settings
 .spyderproject

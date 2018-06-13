@@ -8,6 +8,8 @@ def modify(pkt):
     try:
         if pkt.dst == "00:00:00:00:00:00":
             pkt.dst="00:AA:00:AA:00:AA"
+        
+        
         if pkt.payload:
             if pkt.payload.dst != "0.0.0.0":
                 pkt.payload.dst="192.168.1.100"
