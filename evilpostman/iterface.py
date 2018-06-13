@@ -27,6 +27,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(QMainWindow, self).__init__()     
         self.setupUi(self)
+        self.set_fit_width()
         
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Escape:
@@ -37,6 +38,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.start_tab_button_next.clicked.connect(funct)
 
     
+    ### 1) SNIFF TAB ###
     def set_sniff_tab_button_back(self, funct):
         self.sniff_tab_button_back.clicked.connect(funct)
 
@@ -53,6 +55,16 @@ class Window(QMainWindow, Ui_MainWindow):
         self.sniff_tab_button_sniff.clicked.connect(funct)
 
 
+    def add_row_to_sniff_tab_list_of_packets(self, pkt):
+        newRowNum = self.table_widget_list_of_users.rowCount()
+        print("Nowy numer pakietu:", newRowNum)
+        self.sniff_tab_list_of_packets.insertRow(newRowNum)
+        self.sniff_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
+        self.sniff_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+
+    
+    ### 2) filter tab ###
+
     def set_filters_tab_button_back(self, funct):
         self.filters_tab_button_back.clicked.connect(funct)
 
@@ -65,6 +77,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.filters_tab_button_next.clicked.connect(funct)
 
 
+
+    ### 1) Modify TAB ###
     def set_modified_tab_back(self, funct):
         self.modified_tab_back.clicked.connect(funct)
 
@@ -75,29 +89,8 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def set_modified_tab_button_stop(self, funct):
         self.modified_tab_button_stop.clicked.connect(funct)
-
-        
-        
-    def set_push_button_call(self, funct):
-        self.push_button_call.clicked.connect(funct)    
-        
-        
-    def set_push_button_invite(self, funct):
-        self.push_button_invite.clicked.connect(funct)
-        
-        
-    def set_avatar(self, pixmap : QPixmap):
-        self.label_avatar.setPixmap(QPixmap(str(pixmap)))
-    
-    
-    def set_fit_width(self):
-        self.table_widget_list_of_users.horizontalHeader().setStretchLastSection(True);
-        
-        
-    def set_value_on_list_of_users(self, row, col, item: QTableWidgetItem):
-        self.table_widget_list_of_users.setItem(row, col, item)
-        
-        
+     
+              
     def add_row_to_modified_tab_list_of_packets(self, pkt):
         newRowNum = self.table_widget_list_of_users.rowCount()
         print("Nowy numer pakietu:", newRowNum)
@@ -106,12 +99,13 @@ class Window(QMainWindow, Ui_MainWindow):
         self.modified_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
     
     
-    def add_row_to_sniff_tab_list_of_packets(self, pkt):
-        newRowNum = self.table_widget_list_of_users.rowCount()
-        print("Nowy numer pakietu:", newRowNum)
-        self.sniff_tab_list_of_packets.insertRow(newRowNum)
-        self.sniff_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.sniff_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+
+    
+    def set_fit_width(self):
+        self.modified_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
+        self.sniff_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
+        self.filters_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
+        
 
 
     def close_event_message_box(self, event):
