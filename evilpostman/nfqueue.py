@@ -6,15 +6,9 @@ from scapy.layers.l2 import Ether
 
 def modify(pkt):
     try:
-        if pkt.dst == "00:00:00:00:00:00":
-            pkt.dst="00:AA:00:AA:00:AA"
-        
-        
-        if pkt.payload:
-            if pkt.payload.dst != "0.0.0.0":
-                pkt.payload.dst="192.168.1.100"
-                print(pkt.payload.dst)
-            print(pkt.dst)
+        if pkt.dst != "0.0.0.0":
+           pkt.dst="192.168.1.100"
+        print(pkt.dst)
     except Exception as err:
         print(err)
 
@@ -29,12 +23,9 @@ class QueuePacketCatcher:
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        #self.captured_packets.append(pkt)
-        print(pkt.summary())
-        print(pkt[IP].ttl, end='')
-        pkt[IP].ttl = -2
-        print("  ==>  ", end='')
-        print(pkt[IP].ttl)
+        #print(pkt.dst)
+        modify(pkt)
+        packet.set_payload(bytes(pkt))
         packet.accept()
 
     def accept_all(self):
@@ -51,8 +42,7 @@ class QueuePacketCatcher:
             #self.accept_all()
         except KeyboardInterrupt:
             pass
-        
-sniff(prn=modify)
+
 
 catch = QueuePacketCatcher()
 catch.start_capture()
