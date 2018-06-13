@@ -56,7 +56,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
 
     def add_row_to_sniff_tab_list_of_packets(self, pkt):
-        newRowNum = self.table_widget_list_of_users.rowCount()
+        newRowNum = self.sniff_tab_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.sniff_tab_list_of_packets.insertRow(newRowNum)
         self.sniff_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
@@ -75,7 +75,16 @@ class Window(QMainWindow, Ui_MainWindow):
         
     def set_filters_tab_button_next(self, funct):
         self.filters_tab_button_next.clicked.connect(funct)
-
+        
+        
+    def add_row_to_filters_tab_list_of_packets(self, newFilter):
+        newRowNum = self.filters_tab_list_of_packets.rowCount()
+        print("Nowy numer pakietu:", newRowNum)
+        self.filters_tab_list_of_packets.insertRow(newRowNum)
+        self.filters_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
+        self.filters_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(newFilter))
+        self.filters_tab_list_of_packets.setItem(newRowNum, 2, QTableWidgetItem(True))
+   
     ### 3) Modify TAB ###
     def set_modified_tab_back(self, funct):
         self.modified_tab_back.clicked.connect(funct)
@@ -90,7 +99,7 @@ class Window(QMainWindow, Ui_MainWindow):
      
               
     def add_row_to_modified_tab_list_of_packets(self, pkt):
-        newRowNum = self.table_widget_list_of_users.rowCount()
+        newRowNum = self.modified_tab_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.modified_tab_list_of_packets.insertRow(newRowNum)
         self.modified_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
