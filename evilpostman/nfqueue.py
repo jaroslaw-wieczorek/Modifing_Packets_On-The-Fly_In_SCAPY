@@ -18,6 +18,9 @@ def modify(pkt):
 class QueuePacketCatcher(Window):
     def __init__(self):
         super(Window, self).__init__()
+        self.setupUi(self)
+        self.set_fit_width()
+        
         self.captured_packets = list()
 
     def getcaptured_packets_by_ref(self):

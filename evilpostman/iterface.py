@@ -26,8 +26,8 @@ class Window(QMainWindow, Ui_MainWindow):
     
     def __init__(self):
         super(QMainWindow, self).__init__()     
-        self.setupUi(self)
-        self.set_fit_width()
+        #self.setupUi(self)
+        #self.set_fit_width()
         
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Escape:
@@ -76,9 +76,7 @@ class Window(QMainWindow, Ui_MainWindow):
     def set_filters_tab_button_next(self, funct):
         self.filters_tab_button_next.clicked.connect(funct)
 
-
-
-    ### 1) Modify TAB ###
+    ### 3) Modify TAB ###
     def set_modified_tab_back(self, funct):
         self.modified_tab_back.clicked.connect(funct)
 
@@ -99,14 +97,12 @@ class Window(QMainWindow, Ui_MainWindow):
         self.modified_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
     
     
-
     
     def set_fit_width(self):
         self.modified_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
         self.sniff_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
         self.filters_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
         
-
 
     def close_event_message_box(self, event):
         print("event")
