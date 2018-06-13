@@ -33,6 +33,7 @@ class QueuePacketCatcher(Window):
         self.set_fit_width()
         self.captured_packets = list()
         self.set_button_funct(self.cap_button_sniff, self.start_capture)
+        self.runing = False
 
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
@@ -54,8 +55,6 @@ class QueuePacketCatcher(Window):
             self.runing = True
             a = NFQController(self.modify)
             a.start()
-
-
 
     def backupIPTables(directory, filename):
         if not os.path.exists(directory):
