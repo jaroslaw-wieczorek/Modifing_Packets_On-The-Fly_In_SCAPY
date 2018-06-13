@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog
 
 from .gui.dialog_ui  import Ui_Dialog
 from .iterface import Window
+from .nfqueue import QueuePacketCatcher
 
 #class DialogWidget(QDialog, Ui_Dialog):
 #    def __init__(self):
@@ -14,35 +15,15 @@ from .iterface import Window
 
 
 
-def backupIPTables(directory, filename):
-    if not os.path.exists(directory):
-        try:
-            os.makedirs(str(directory))
-            os.popen("iptables-save > "+str(directory)+"/"+str(filename))
-        except Exception as e:
-            raise e 
-
-
-def restoreIPTables(directory, filename):
-    if not os.path.exists(directory):
-        try:
-            os.makedirs(str(directory))
-            os.popen("iptables-restore "+str(directory)+"/"+str(filename))
-        except Exception as e:
-            raise e 
-
 
 def main():
     directory = "iptables-backup"
     backup = "backup"
     
-    backupIPTables(directory, backup)
     app = QApplication(sys.argv)
-    main_window = Window()
-    main_window.show()
+    mainapp = QueuePacketCatcher()
+    mainapp.show()
     sys.exit(app.exec_())
-    
-    restoreIPTables(directory, backup)
 
 if __name__ == "__main__":
     main()

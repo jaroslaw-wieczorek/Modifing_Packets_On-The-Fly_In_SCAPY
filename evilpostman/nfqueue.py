@@ -2,6 +2,7 @@ from scapy.all import *
 from netfilterqueue import NetfilterQueue, COPY_PACKET
 from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
+from evilpostman.iterface import Window
 
 
 def modify(pkt):
@@ -14,8 +15,9 @@ def modify(pkt):
 
 
 
-class QueuePacketCatcher:
+class QueuePacketCatcher(Window):
     def __init__(self):
+        super(Window, self).__init__()
         self.captured_packets = list()
 
     def getcaptured_packets_by_ref(self):
@@ -24,7 +26,7 @@ class QueuePacketCatcher:
     def modify(self, packet):
         pkt = IP(packet.get_payload())
         #print(pkt.dst)
-        modify(pkt)
+        self.add_row_to_sniff_tab_list_of_packets(pkt)
         packet.set_payload(bytes(pkt))
         packet.accept()
 
@@ -43,6 +45,18 @@ class QueuePacketCatcher:
         except KeyboardInterrupt:
             pass
 
+    def backupIPTables(directory, filename):
+        if not os.path.exists(directory):
+            try:
+                os.makedirs(str(directory))
+                os.popen("iptables-save > " + str(directory) + "/" + str(filename))
+            except Exception as e:
+                raise e
 
-catch = QueuePacketCatcher()
-catch.start_capture()
+    def restoreIPTables(directory, filename):
+        if not os.path.exists(directory):
+            try:
+                os.makedirs(str(directory))
+                os.popen("iptables-restore " + str(directory) + "/" + str(filename))
+            except Exception as e:
+                raise e
