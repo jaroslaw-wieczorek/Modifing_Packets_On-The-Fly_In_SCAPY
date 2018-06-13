@@ -40,7 +40,7 @@ class QueuePacketCatcher(Window):
     def modify(self, packet):
         pkt = IP(packet.get_payload())
         #print(pkt.dst)
-        self.add_row_to_sniff_tab_list_of_packets(pkt)
+        self.add_row_to_cap_list_packets(pkt)
         packet.set_payload(bytes(pkt))
         packet.accept()
 
