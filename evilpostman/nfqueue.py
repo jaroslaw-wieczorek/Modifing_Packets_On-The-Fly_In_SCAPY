@@ -27,12 +27,8 @@ class QueuePacketCatcher:
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        #self.captured_packets.append(pkt)
-        print(pkt.summary())
-        print(pkt[IP].ttl, end='')
-        pkt[IP].ttl = -2
-        print("  ==>  ", end='')
-        print(pkt[IP].ttl)
+        self.modify(pkt)
+        packet.setpayload(str(pkt))
         packet.accept()
 
     def accept_all(self):
