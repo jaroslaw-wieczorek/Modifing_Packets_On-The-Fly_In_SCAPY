@@ -33,84 +33,42 @@ class Window(QMainWindow, Ui_MainWindow):
         if e.key() == QtCore.Qt.Key_Escape:
             self.close()
 
-        
-    def set_start_tab_button_next(self, funct):
-        self.start_tab_button_next.clicked.connect(funct)
-
     
-    ### 1) SNIFF TAB ###
-    def set_sniff_tab_button_back(self, funct):
-        self.sniff_tab_button_back.clicked.connect(funct)
-
-       
-    def set_sniff_tab_button_create_filter_from_packet(self, funct):
-        self.sniff_tab_button_create_filter_from_packet.clicked.connect(funct)
-
+    def set_button_funct(self, button, funct):
+        button.clicked.connect(funct)
         
-    def set_sniff_tab_button_next(self, funct):
-        self.sniff_tab_button_next.clicked.connect(funct)
-
-
-    def set_sniff_tab_button_sniff(self, funct):
-        self.sniff_tab_button_sniff.clicked.connect(funct)
-
-
-    def add_row_to_sniff_tab_list_of_packets(self, pkt):
+   
+    def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.sniff_tab_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.sniff_tab_list_of_packets.insertRow(newRowNum)
-        self.sniff_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.sniff_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+        self.cap_list_packets.insertRow(newRowNum)
+        self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
+        self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
 
-    
-    ### 2) filter tab ###
-
-    def set_filters_tab_button_back(self, funct):
-        self.filters_tab_button_back.clicked.connect(funct)
-
-
-    def set_filters_tab_button_create_filter(self, funct):
-        self.filters_tab_button_create_filter.clicked.connect(funct)
-
+            
         
-    def set_filters_tab_button_next(self, funct):
-        self.filters_tab_button_next.clicked.connect(funct)
-        
-        
-    def add_row_to_filters_tab_list_of_packets(self, newFilter):
+    def add_row_to_filt_list_packets(self, newFilter):
         newRowNum = self.filters_tab_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.filters_tab_list_of_packets.insertRow(newRowNum)
-        self.filters_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.filters_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(newFilter))
-        self.filters_tab_list_of_packets.setItem(newRowNum, 2, QTableWidgetItem(True))
-   
-    ### 3) Modify TAB ###
-    def set_modified_tab_back(self, funct):
-        self.modified_tab_back.clicked.connect(funct)
-
-
-    def set_modified_tab_button_show(self, funct):
-        self.modified_tab_button_show.clicked.connect(funct)
-
-
-    def set_modified_tab_button_stop(self, funct):
-        self.modified_tab_button_stop.clicked.connect(funct)
+        self.filt_list_packets.insertRow(newRowNum)
+        self.filt_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
+        self.filt_list_packets.setItem(newRowNum, 1, QTableWidgetItem(newFilter))
+        self.filt_list_packets.setItem(newRowNum, 2, QTableWidgetItem(True))
      
               
-    def add_row_to_modified_tab_list_of_packets(self, pkt):
+    def add_row_to_mod_list_packets(self, pkt):
         newRowNum = self.modified_tab_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.modified_tab_list_of_packets.insertRow(newRowNum)
-        self.modified_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.modified_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+        self.mod_list_packets.insertRow(newRowNum)
+        self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
+        self.mod_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
     
     
     
     def set_fit_width(self):
-        self.modified_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
-        self.sniff_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
-        self.filters_tab_list_of_packets.horizontalHeader().setStretchLastSection(True)
+        self.mod_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.cap_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.filt_list_packets.horizontalHeader().setStretchLastSection(True)
         
 
     def close_event_message_box(self, event):
