@@ -42,26 +42,22 @@ class Window(QMainWindow, Ui_MainWindow):
         newRowNum = self.cap_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.cap_list_packets.insertRow(newRowNum)
-        self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt.summary()))
-
+        self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
             
         
     def add_row_to_filt_list_packets(self, newFilter):
         newRowNum = self.filt_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.filt_list_packets.insertRow(newRowNum)
-        self.filt_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.filt_list_packets.setItem(newRowNum, 1, QTableWidgetItem(newFilter))
-        self.filt_list_packets.setItem(newRowNum, 2, QTableWidgetItem(True))
+        self.filt_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newFilter))
+        self.filt_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
      
               
     def add_row_to_mod_list_packets(self, pkt):
         newRowNum = self.mod_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.mod_list_packets.insertRow(newRowNum)
-        self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.mod_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt.summary()))
+        self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
     
     
     
