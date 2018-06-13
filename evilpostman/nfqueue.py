@@ -2,6 +2,22 @@ from scapy.all import *
 from netfilterqueue import NetfilterQueue, COPY_PACKET
 from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
+
+
+def modify(pkt):
+    try:
+        if pkt.dst == "00:00:00:00:00:00":
+            pkt.dst="00:AA:00:AA:00:AA"
+        if pkt.payload:
+            if pkt.payload.dst != "0.0.0.0":
+                pkt.payload.dst="192.168.1.100"
+                print(pkt.payload.dst)
+            print(pkt.dst)
+    except Exception as err:
+        print(err)
+
+
+
 class QueuePacketCatcher:
     def __init__(self):
         self.captured_packets = list()
@@ -33,6 +49,8 @@ class QueuePacketCatcher:
             #self.accept_all()
         except KeyboardInterrupt:
             pass
+        
+sniff(prn=modify)
 
 catch = QueuePacketCatcher()
 catch.start_capture()
