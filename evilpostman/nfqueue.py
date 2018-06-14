@@ -1,19 +1,19 @@
+import multiprocessing
+
 from scapy.all import *
 from netfilterqueue import NetfilterQueue, COPY_PACKET
 from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
 from evilpostman.iterface import Window
 import queue
-import _thread
+import threading
 
-class NFQController(threading.Thread):
 
-    def __init__(self,func):
-        threading.Thread.__init__(self)
+class NFQController(multiprocessing.Process):
+    def __init__(self, queue):
+        multiprocessing.Process.__init__(self)
         self._must_stop = False
-        self.result = ""
-        self.nfqueue = NetfilterQueue()
-        self.nfqueue.bind(1, func, mode=COPY_PACKET)
+        self.queue = queue
 
     def stop(self):
         self._must_stop = True
@@ -21,8 +21,7 @@ class NFQController(threading.Thread):
 
     def run(self):
         print("Begining capture.")
-        self.nfqueue.run()
-
+        self.queue.run()
 
 
 class QueuePacketCatcher(Window):
@@ -34,14 +33,15 @@ class QueuePacketCatcher(Window):
         self.set_button_funct(self.cap_button_sniff, self.start_capture)
         self.runing = False
         self.qworker = NFQController(self.modify)
+        self.nfqueue = NetfilterQueue()
+        self.nfqueue.bind(1, self.modify, mode=COPY_PACKET)
 
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
 
-
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        #print(pkt.dst)
+        # print(pkt.dst)
         self.add_row_to_cap_list_packets(pkt)
         packet.set_payload(bytes(pkt))
         packet.accept()
@@ -53,12 +53,13 @@ class QueuePacketCatcher(Window):
 
     def start_capture(self):
         if self.runing != True:
+            self.qworker = NFQController(self.nfqueue)
             self.runing = True
             self.qworker.start()
         else:
             print("stopping")
             self.runing = False
-            self.qworker.stop()
+            self.qworker.terminate()
 
     def backupIPTables(directory, filename):
         if not os.path.exists(directory):
