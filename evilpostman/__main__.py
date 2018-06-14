@@ -47,7 +47,7 @@ def main():
     mainapp.cap_list_packets.cellDoubleClicked['int','int'].connect(
             partial(mainapp.cell_was_clicked))
     
-    
+    mainapp.closeEvent=mainapp.close_event_message_box
     mainapp.set_fit_width()
     mainapp.show()
     sys.exit(app.exec_())

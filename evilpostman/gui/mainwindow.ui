@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -174,6 +174,11 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="filt_list_packets">
+          <row>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </row>
           <column>
            <property name="text">
             <string>Filtr</string>
@@ -184,6 +189,16 @@
             <string>Aktywny</string>
            </property>
           </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string>IP.src=192.168.1.100</string>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>True</string>
+           </property>
+          </item>
          </widget>
         </item>
        </layout>

@@ -61,7 +61,7 @@ class Window(QMainWindow, Ui_MainWindow):
         self.filt_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
      
               
-    def add_row_to_mod_list_packets(self, pkt):
+    def add_row_to_mod_list_packets (self, pkt):
         newRowNum = self.mod_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.mod_list_packets.insertRow(newRowNum)
@@ -90,6 +90,10 @@ class Window(QMainWindow, Ui_MainWindow):
             "Czy napewno chcesz zakończyć? ", QMessageBox.Yes, QMessageBox.No)
         
         return reply
+
+    def pkt_hasLayer(self, pkt, layer):
+        if pkt.haslayer(layer):
+            self.add_row_to_mod_list_packets(pkt)
 
     def nothing(self):
         print("Do nothing!")
