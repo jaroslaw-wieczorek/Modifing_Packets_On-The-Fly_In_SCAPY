@@ -3,16 +3,27 @@ from netfilterqueue import NetfilterQueue, COPY_PACKET
 from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
 from evilpostman.iterface import Window
+import queue
+import threading
 
+class NFQController(threading.Thread):
 
-def modify(pkt):
-    try:
-        if pkt.dst != "0.0.0.0":
-           pkt.dst="192.168.1.100"
-        print(pkt.dst)
-    except Exception as err:
-        print(err)
+    def __init__(self,func):
+        threading.Thread.__init__(self)
+        self._must_stop = False
+        self.result = ""
+        self.nfqueue = NetfilterQueue()
+        self.nfqueue.bind(1, func, mode=COPY_PACKET)
 
+    def stop(self):
+        self._must_stop = True
+
+    def run(self):
+        try:
+            print("Begining capture.")
+            self.nfqueue.run()
+        except self._must_stop==True:
+            pass
 
 
 class QueuePacketCatcher(Window):
@@ -42,11 +53,9 @@ class QueuePacketCatcher(Window):
     def start_capture(self):
         if self.runing != True:
             self.runing = True
-            nfqueue = NetfilterQueue()
-            nfqueue.bind(1, self.modify, mode=COPY_PACKET)
-            print("Begining capture.")
-            nfqueue.run()
-            #self.accept_all()
+            a = NFQController(self.modify)
+            a.start()
+
 
 
     def backupIPTables(directory, filename):
