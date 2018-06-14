@@ -46,7 +46,7 @@ class Window(QMainWindow, Ui_MainWindow):
         newRowNum = self.cap_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.cap_list_packets.insertRow(newRowNum)
-        item = PyQtScapyTableWidgetItem(pkt.summary(), pkt)
+        item = QTableWidgetItem(pkt.summary())
       #  print(item.flags())
         item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
         self.cap_list_packets.setItem(newRowNum, 0, item)

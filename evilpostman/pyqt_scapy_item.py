@@ -5,19 +5,6 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 
 class PyQtScapyTableWidgetItem(QTableWidgetItem):
     # << Custom Main Widget >> #
-    def __init__(self, text, data):
-        super(PyQtScapyTableWidgetItem, self).__init__()
-        self.text = "Pakiet"
-        self.data = ""    
-        self.setText(text)
-        self.setData(data)
+    def __init__(self, text):
+        super(PyQtScapyTableWidgetItem).__init__()
         
-        
-    def setText(self, text):
-        self.text = str(text)
-
-    def text(self):
-        return self.text
-        
-    def setData(self, data):
-        self.data = data
