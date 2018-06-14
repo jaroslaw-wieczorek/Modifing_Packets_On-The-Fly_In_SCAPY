@@ -65,7 +65,6 @@ class QueuePacketCatcher(Window):
         print("Accepted all packetinos.")
 
     def start_capture(self):
-        self.add_row_to_cap_list_packets(IP(dst="192.168.100.123"))
         if self.runing != True:
             self.backupIPTables(self.directory, self.backup)
             os.popen("iptables -A INPUT -j NFQUEUE --queue-num 1")
