@@ -18,9 +18,6 @@ from .nfqueue import QueuePacketCatcher
 
 
 def main():
-    directory = "iptables-backup"
-    backup = "backup"
-    
     app = QApplication(sys.argv)
     mainapp = QueuePacketCatcher()
     mainapp.set_button_funct(mainapp.cap_button_sniff, mainapp.start_capture)

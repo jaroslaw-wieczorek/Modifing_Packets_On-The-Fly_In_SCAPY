@@ -29,12 +29,13 @@ class QueuePacketCatcher(Window):
     def __init__(self):
         super(Window, self).__init__()
         self.setupUi(self)
-
         self.captured_packets = list()
         self.runing = False
         self.nfqueue = NetfilterQueue()
         self.nfqueue.bind(1, self.modify, mode=COPY_PACKET)
         self.qworker = NFQController(self.nfqueue)
+        self.directory = "iptables-backup"
+        self.backup = "backup"
 
 
 
@@ -66,30 +67,32 @@ class QueuePacketCatcher(Window):
     def start_capture(self):
         self.add_row_to_cap_list_packets(IP(dst="192.168.100.123"))
         if self.runing != True:
+            self.backupIPTables(self.directory, self.backup)
+            os.popen("iptables -A INPUT -j NFQUEUE --queue-num 1")
             self.qworker = NFQController(self.nfqueue)
             self.qworker.daemon = True
             self.runing = True
             self.qworker.start()
         else:
             print("stopping")
+            self.restoreIPTables(self.directory, self.backup)
             self.runing = False
-            try:
-                self.qworker._stop()
-            except Exception as err:
-                print(err)
 
-    def backupIPTables(directory, filename):
+    def backupIPTables(self, directory, filename):
         if not os.path.exists(directory):
             try:
                 os.makedirs(str(directory))
-                os.popen("iptables-save > " + str(directory) + "/" + str(filename))
             except Exception as e:
                 raise e
+        if os.path.exists(directory):
+            command = "iptables-save > " + str(directory) + "/" + str(filename)
+            os.popen(command)
 
-    def restoreIPTables(directory, filename):
-        if not os.path.exists(directory):
+
+
+    def restoreIPTables(self, directory, filename):
+        if os.path.exists(directory):
             try:
-                os.makedirs(str(directory))
                 os.popen("iptables-restore " + str(directory) + "/" + str(filename))
             except Exception as e:
                 raise e
