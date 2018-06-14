@@ -43,7 +43,7 @@ class Window(QMainWindow, Ui_MainWindow):
         print("Nowy numer pakietu:", newRowNum)
         self.cap_list_packets.insertRow(newRowNum)
         self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+        self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt.summary()))
 
             
         
@@ -61,7 +61,7 @@ class Window(QMainWindow, Ui_MainWindow):
         print("Nowy numer pakietu:", newRowNum)
         self.mod_list_packets.insertRow(newRowNum)
         self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.mod_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+        self.mod_list_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt.summary()))
     
     
     
