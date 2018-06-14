@@ -2,13 +2,12 @@ import multiprocessing
 
 from scapy.all import *
 from netfilterqueue import NetfilterQueue, COPY_PACKET
-from scapy.layers.inet import IP
+from scapy.layers.inet import IP, TCP
 from scapy.layers.l2 import Ether
 from evilpostman.iterface import Window
 from evilpostman.pyqt_scapy_item import PyQtScapyTableWidgetItem
 import queue
 import threading
-
 
 class NFQController(threading.Thread):
     def __init__(self, nfq):
@@ -24,7 +23,6 @@ class NFQController(threading.Thread):
         print("Begining capture.")
         self.other.run()
 
-
 class QueuePacketCatcher(Window):
     def __init__(self):
         super(Window, self).__init__()
@@ -37,10 +35,6 @@ class QueuePacketCatcher(Window):
         self.directory = "iptables-backup"
         self.backup = "backup"
 
-
-
-
-
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
 
@@ -49,6 +43,7 @@ class QueuePacketCatcher(Window):
         pkt = IP(packet.get_payload())
         # print(pkt.dst)
         self.add_row_to_cap_list_packets(pkt)
+        self.pkt_hasLayer(pkt, TCP)
         packet.set_payload(bytes(pkt))
         packet.accept()
 
@@ -86,8 +81,6 @@ class QueuePacketCatcher(Window):
         if os.path.exists(directory):
             command = "iptables-save > " + str(directory) + "/" + str(filename)
             os.popen(command)
-
-
 
     def restoreIPTables(self, directory, filename):
         if os.path.exists(directory):
