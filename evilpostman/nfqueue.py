@@ -4,7 +4,7 @@ from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
 from evilpostman.iterface import Window
 import queue
-import threading
+import _thread
 
 class NFQController(threading.Thread):
 
@@ -17,13 +17,12 @@ class NFQController(threading.Thread):
 
     def stop(self):
         self._must_stop = True
+        sys.exit()
 
     def run(self):
-        try:
-            print("Begining capture.")
-            self.nfqueue.run()
-        except self._must_stop==True:
-            pass
+        print("Begining capture.")
+        self.nfqueue.run()
+
 
 
 class QueuePacketCatcher(Window):
@@ -34,6 +33,7 @@ class QueuePacketCatcher(Window):
         self.captured_packets = list()
         self.set_button_funct(self.cap_button_sniff, self.start_capture)
         self.runing = False
+        self.qworker = NFQController(self.modify)
 
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
@@ -53,8 +53,11 @@ class QueuePacketCatcher(Window):
     def start_capture(self):
         if self.runing != True:
             self.runing = True
-            a = NFQController(self.modify)
-            a.start()
+            self.qworker.start()
+        else:
+            print("stopping")
+            self.runing = False
+            self.qworker.stop()
 
     def backupIPTables(directory, filename):
         if not os.path.exists(directory):
