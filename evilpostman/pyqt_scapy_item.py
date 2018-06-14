@@ -7,7 +7,7 @@ class PyQtScapyTableWidgetItem(QTableWidgetItem):
     # << Custom Main Widget >> #
     def __init__(self, text, data):
         super(PyQtScapyTableWidgetItem, self).__init__()
-        self.text = ""
+        self.text = "Pakiet"
         self.data = ""    
         self.setText(text)
         self.setData(data)
