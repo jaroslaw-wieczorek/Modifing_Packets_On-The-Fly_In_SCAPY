@@ -22,6 +22,8 @@ def main():
     
     app = QApplication(sys.argv)
     mainapp = QueuePacketCatcher()
+    mainapp.set_button_funct(mainapp.cap_button_sniff, mainapp.start_capture)
+    mainapp.set_fit_width()
     mainapp.show()
     sys.exit(app.exec_())
 

@@ -25,11 +25,7 @@ from gui.mainwindow_ui import Ui_MainWindow
 class Window(QMainWindow, Ui_MainWindow):
     
     def __init__(self):
-        super(QMainWindow, self).__init__()     
-        self.setupUi(self)
-        self.set_fit_width()
-        newFilter = "dupa"
-        self.add_row_to_cap_list_packets(newFilter)
+        super(QMainWindow, self).__init__()
      
         
     def keyPressEvent(self, e):
@@ -39,7 +35,7 @@ class Window(QMainWindow, Ui_MainWindow):
     
     def set_button_funct(self, button, funct):
         button.clicked.connect(funct)
-        P()
+        #P()
    
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()

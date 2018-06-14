@@ -9,11 +9,11 @@ import queue
 import threading
 
 
-class NFQController(multiprocessing.Process):
-    def __init__(self, queue):
-        multiprocessing.Process.__init__(self)
+class NFQController(threading.Thread):
+    def __init__(self, nfq):
+        threading.Thread.__init__(self)
         self._must_stop = False
-        self.queue = queue
+        self.other = nfq
 
     def stop(self):
         self._must_stop = True
@@ -21,20 +21,22 @@ class NFQController(multiprocessing.Process):
 
     def run(self):
         print("Begining capture.")
-        self.queue.run()
+        self.other.run()
 
 
 class QueuePacketCatcher(Window):
     def __init__(self):
         super(Window, self).__init__()
         self.setupUi(self)
-        self.set_fit_width()
+
         self.captured_packets = list()
-        self.set_button_funct(self.cap_button_sniff, self.start_capture)
         self.runing = False
-        self.qworker = NFQController(self.modify)
         self.nfqueue = NetfilterQueue()
         self.nfqueue.bind(1, self.modify, mode=COPY_PACKET)
+        self.qworker = NFQController(self.nfqueue)
+
+
+
 
 
     def getcaptured_packets_by_ref(self):
@@ -54,14 +56,19 @@ class QueuePacketCatcher(Window):
         print("Accepted all packetinos.")
 
     def start_capture(self):
+        self.add_row_to_cap_list_packets(IP(dst="192.168.100.123"))
         if self.runing != True:
             self.qworker = NFQController(self.nfqueue)
+            self.qworker.daemon = True
             self.runing = True
             self.qworker.start()
         else:
             print("stopping")
             self.runing = False
-            self.qworker.terminate()
+            try:
+                self.qworker._stop()
+            except Exception as err:
+                print(err)
 
     def backupIPTables(directory, filename):
         if not os.path.exists(directory):
