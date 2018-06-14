@@ -84,6 +84,6 @@ class QueuePacketCatcher(Window):
     def restoreIPTables(self, directory, filename):
         if os.path.exists(directory):
             try:
-                os.popen("iptables-restore " + str(directory) + "/" + str(filename))
+                os.popen("iptables-restore < " + str(directory) + "/" + str(filename))
             except Exception as e:
                 raise e
