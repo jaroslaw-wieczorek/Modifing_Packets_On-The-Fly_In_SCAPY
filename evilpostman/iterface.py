@@ -60,7 +60,7 @@ class Window(QMainWindow, Ui_MainWindow):
         print("Nowy numer pakietu:", newRowNum)
         self.sniff_tab_list_of_packets.insertRow(newRowNum)
         self.sniff_tab_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(newRowNum))
-        self.sniff_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt))
+        self.sniff_tab_list_of_packets.setItem(newRowNum, 1, QTableWidgetItem(pkt.summary()))
 
     
     ### 2) filter tab ###

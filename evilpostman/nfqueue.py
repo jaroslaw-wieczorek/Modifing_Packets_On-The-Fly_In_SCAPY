@@ -22,6 +22,7 @@ class QueuePacketCatcher(Window):
         self.set_fit_width()
         self.captured_packets = list()
         self.set_sniff_tab_button_sniff(self.start_capture)
+        self.runing = False
 
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
@@ -39,14 +40,14 @@ class QueuePacketCatcher(Window):
         print("Accepted all packetinos.")
 
     def start_capture(self):
-        nfqueue = NetfilterQueue()
-        nfqueue.bind(1, self.modify, mode=COPY_PACKET)
-        try:
+        if self.runing != True:
+            self.runing = True
+            nfqueue = NetfilterQueue()
+            nfqueue.bind(1, self.modify, mode=COPY_PACKET)
             print("Begining capture.")
             nfqueue.run()
             #self.accept_all()
-        except KeyboardInterrupt:
-            pass
+
 
     def backupIPTables(directory, filename):
         if not os.path.exists(directory):
