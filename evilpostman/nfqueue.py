@@ -38,6 +38,7 @@ class QueuePacketCatcher(Window):
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
 
+
     def modify(self, packet):
         pkt = IP(packet.get_payload())
         #print(pkt.dst)
