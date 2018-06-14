@@ -5,7 +5,7 @@ Created on Wed Jun 13 20:48:16 2018
 
 @author: afar
 """
-
+from scapy.all import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QPixmap, QIcon, QImage
@@ -26,8 +26,11 @@ class Window(QMainWindow, Ui_MainWindow):
     
     def __init__(self):
         super(QMainWindow, self).__init__()     
-        #self.setupUi(self)
-        #self.set_fit_width()
+        self.setupUi(self)
+        self.set_fit_width()
+        newFilter = "dupa"
+        self.add_row_to_cap_list_packets(newFilter)
+     
         
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Escape:
@@ -36,7 +39,7 @@ class Window(QMainWindow, Ui_MainWindow):
     
     def set_button_funct(self, button, funct):
         button.clicked.connect(funct)
-        
+        P()
    
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()
@@ -77,4 +80,17 @@ class Window(QMainWindow, Ui_MainWindow):
     def nothing(self):
         print("Do nothing!")
         
-        
+"""        
+"""
+
+def main():
+    
+    app = QApplication(sys.argv)
+    mainapp = Window()
+    mainapp.show()
+    sys.exit(app.exec_())
+
+if __name__ == "__main__":
+    main()
+
+ 
