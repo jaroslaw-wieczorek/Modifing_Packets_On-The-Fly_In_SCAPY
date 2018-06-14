@@ -36,8 +36,10 @@ class QueuePacketCatcher(Window):
         self.nfqueue = NetfilterQueue()
         self.nfqueue.bind(1, self.modify, mode=COPY_PACKET)
 
+
     def getcaptured_packets_by_ref(self):
         return self.captured_packets
+
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())

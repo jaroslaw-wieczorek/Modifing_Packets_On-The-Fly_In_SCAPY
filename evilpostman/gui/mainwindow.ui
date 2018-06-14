@@ -139,11 +139,6 @@
          <widget class="QTableWidget" name="cap_list_packets">
           <column>
            <property name="text">
-            <string>Nr.</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
             <string>Pakiet</string>
            </property>
           </column>
@@ -179,11 +174,6 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="filt_list_packets">
-          <column>
-           <property name="text">
-            <string>Nr.</string>
-           </property>
-          </column>
           <column>
            <property name="text">
             <string>Filtr</string>
@@ -226,11 +216,6 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="mod_list_packets">
-          <column>
-           <property name="text">
-            <string>Nr.</string>
-           </property>
-          </column>
           <column>
            <property name="text">
             <string>Pakiet</string>
