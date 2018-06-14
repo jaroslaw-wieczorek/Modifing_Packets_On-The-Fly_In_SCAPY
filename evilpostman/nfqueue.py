@@ -5,6 +5,7 @@ from netfilterqueue import NetfilterQueue, COPY_PACKET
 from scapy.layers.inet import IP
 from scapy.layers.l2 import Ether
 from evilpostman.iterface import Window
+from evilpostman.pyqt_scapy_item import PyQtScapyTableWidgetItem
 import queue
 import threading
 
@@ -45,6 +46,13 @@ class QueuePacketCatcher(Window):
 
 
     def modify(self, packet):
+        pkt = IP(packet.get_payload())
+        # print(pkt.dst)
+        self.add_row_to_cap_list_packets(pkt)
+        packet.set_payload(bytes(pkt))
+        packet.accept()
+
+    def get_packet(self, packet):
         pkt = IP(packet.get_payload())
         # print(pkt.dst)
         self.add_row_to_cap_list_packets(pkt)

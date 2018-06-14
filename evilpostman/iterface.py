@@ -6,7 +6,7 @@ Created on Wed Jun 13 20:48:16 2018
 @author: afar
 """
 from scapy.all import *
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, Qt
 from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QPixmap, QIcon, QImage
 from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
@@ -14,13 +14,18 @@ from PyQt5.QtWidgets import QTableWidget, QTableWidgetItem
 import os
 import sys
 
+
 # importing data accc
 lib_path = os.path.abspath(os.path.join(__file__, '..', ))
 sys.path.append(lib_path)
 print(lib_path)
 
+from evilpostman.pyqt_scapy_item  import PyQtScapyTableWidgetItem
+
 
 from gui.mainwindow_ui import Ui_MainWindow
+
+
 
 class Window(QMainWindow, Ui_MainWindow):
     
@@ -41,7 +46,11 @@ class Window(QMainWindow, Ui_MainWindow):
         newRowNum = self.cap_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.cap_list_packets.insertRow(newRowNum)
-        self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
+        item = PyQtScapyTableWidgetItem(pkt.summary(), pkt)
+      #  print(item.flags())
+        item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
+        self.cap_list_packets.setItem(newRowNum, 0, item)
+        
             
         
     def add_row_to_filt_list_packets(self, newFilter):
@@ -58,7 +67,16 @@ class Window(QMainWindow, Ui_MainWindow):
         self.mod_list_packets.insertRow(newRowNum)
         self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
     
+    def get_packet_from_cap_list(self, row):
+        #self.tab_widget.
+        pass
     
+    # DEBUG method
+    def cell_was_clicked(self, row, column):
+        print("Row %d and Column %d was clicked" % (row, column))
+        item = self.cap_list_packets.itemAt(row, column)
+        self.pkt = item.text()
+        print(self.pkt)
     
     def set_fit_width(self):
         self.mod_list_packets.horizontalHeader().setStretchLastSection(True)

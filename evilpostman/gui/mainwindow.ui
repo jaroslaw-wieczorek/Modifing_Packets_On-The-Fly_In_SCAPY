@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -107,6 +107,13 @@
         <string>Przechwytywanie</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="5" column="0">
+         <widget class="QPushButton" name="cap_button_back">
+          <property name="text">
+           <string>Powrót</string>
+          </property>
+         </widget>
+        </item>
         <item row="5" column="1">
          <widget class="QPushButton" name="cap_button_create_filter">
           <property name="text">
@@ -125,13 +132,6 @@
          <widget class="QPushButton" name="cap_button_sniff">
           <property name="text">
            <string>Włącz przechwytywanie pakietów</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QPushButton" name="cap_button_back">
-          <property name="text">
-           <string>Powrót</string>
           </property>
          </widget>
         </item>
@@ -265,12 +265,28 @@
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>165</x>
-     <y>627</y>
+     <x>460</x>
+     <y>500</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>627</y>
+     <x>463</x>
+     <y>500</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cap_list_packets</sender>
+   <signal>cellDoubleClicked(int,int)</signal>
+   <receiver>cap_list_packets</receiver>
+   <slot>selectRow(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>249</x>
+     <y>81</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>452</x>
+     <y>106</y>
     </hint>
    </hints>
   </connection>
