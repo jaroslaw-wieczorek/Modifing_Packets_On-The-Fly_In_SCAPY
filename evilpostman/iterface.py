@@ -89,7 +89,7 @@ class Window(QMainWindow, Ui_MainWindow):
         reply = QMessageBox.question(self, 'Zamykanie',
             "Czy napewno chcesz zakończyć? ", QMessageBox.Yes, QMessageBox.No)
         
-        return reply
+        
 
     def pkt_hasLayer(self, pkt, layer):
         if pkt.haslayer(layer):
