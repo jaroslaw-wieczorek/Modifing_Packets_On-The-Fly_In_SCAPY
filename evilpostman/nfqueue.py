@@ -41,9 +41,9 @@ class QueuePacketCatcher(Window):
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        # print(pkt.dst)
-        self.add_row_to_cap_list_packets(pkt)
-        self.pkt_hasLayer(pkt, TCP)
+        #print(pkt.dst)
+        #self.add_row_to_cap_list_packets(pkt)
+        #self.pkt_hasLayer(pkt, TCP)
         packet.set_payload(bytes(pkt))
         packet.accept()
 

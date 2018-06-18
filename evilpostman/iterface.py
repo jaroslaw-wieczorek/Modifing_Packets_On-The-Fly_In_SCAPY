@@ -91,9 +91,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
         return reply
 
-    def pkt_hasLayer(self, pkt, layer):
-        if pkt.haslayer(layer):
-            self.add_row_to_mod_list_packets(pkt)
+
 
     def nothing(self):
         print("Do nothing!")
