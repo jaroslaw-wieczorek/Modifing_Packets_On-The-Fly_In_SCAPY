@@ -8,6 +8,7 @@ from evilpostman.iterface import Window
 from evilpostman.pyqt_scapy_item import PyQtScapyTableWidgetItem
 import queue
 import threading
+from evilpostman.Packet_handler import Packet_handler
 
 class NFQController(threading.Thread):
     def __init__(self, nfq):
@@ -23,10 +24,8 @@ class NFQController(threading.Thread):
         print("Begining capture.")
         self.other.run()
 
-class QueuePacketCatcher(Window):
+class QueuePacketCatcher:
     def __init__(self):
-        super(Window, self).__init__()
-        self.setupUi(self)
         self.captured_packets = list()
         self.runing = False
         self.nfqueue = NetfilterQueue()
@@ -34,30 +33,14 @@ class QueuePacketCatcher(Window):
         self.qworker = NFQController(self.nfqueue)
         self.directory = "iptables-backup"
         self.backup = "backup"
-
-    def getcaptured_packets_by_ref(self):
-        return self.captured_packets
-
+        self.handler = Packet_handler()
 
     def modify(self, packet):
         pkt = IP(packet.get_payload())
-        # print(pkt.dst)
-        self.add_row_to_cap_list_packets(pkt)
-        self.pkt_hasLayer(pkt, TCP)
+        #print(pkt.dst)
+        pkt = self.handler.handle_my_packet(pkt)
         packet.set_payload(bytes(pkt))
         packet.accept()
-
-    def get_packet(self, packet):
-        pkt = IP(packet.get_payload())
-        # print(pkt.dst)
-        self.add_row_to_cap_list_packets(pkt)
-        packet.set_payload(bytes(pkt))
-        packet.accept()
-
-    def accept_all(self):
-        for pkt in self.captured_packets:
-            pkt.accept()
-        print("Accepted all packetinos.")
 
     def start_capture(self):
         if self.runing != True:
