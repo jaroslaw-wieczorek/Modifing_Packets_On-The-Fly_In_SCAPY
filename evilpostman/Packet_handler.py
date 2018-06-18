@@ -8,15 +8,16 @@ import queue
 import threading
 
 
-class QueuePacketCatcher(Window):
+class Packet_handler(Window):
     def __init__(self):
-        pass
+        super(Window, self).__init__()
+        self.setupUi(self)
 
     def pkt_hasLayer(self, pkt, layer):
         if pkt.haslayer(layer):
             self.add_row_to_mod_list_packets(pkt)
 
     def handle_my_packet(self, packet):
-        #self.add_row_to_cap_list_packets(pkt)
+        self.add_row_to_cap_list_packets(packet)
         #self.pkt_hasLayer(pkt, TCP)
         return packet

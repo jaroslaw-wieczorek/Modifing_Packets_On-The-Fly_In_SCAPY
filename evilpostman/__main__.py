@@ -20,36 +20,36 @@ from .nfqueue import QueuePacketCatcher
 def main():
     app = QApplication(sys.argv)
     mainapp = QueuePacketCatcher()
-    mainapp.set_button_funct(mainapp.cap_button_sniff, mainapp.start_capture)
+    mainapp.handler.set_button_funct(mainapp.handler.cap_button_sniff, mainapp.start_capture)
     
-    mainapp.set_button_funct(mainapp.info_button_next,
-                             partial(mainapp.tab_widget.setCurrentIndex, 1))
+    mainapp.handler.set_button_funct(mainapp.handler.info_button_next,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
 
-    mainapp.set_button_funct(mainapp.cap_button_back,
-                             partial(mainapp.tab_widget.setCurrentIndex, 0))
-    mainapp.set_button_funct(mainapp.cap_button_next,
-                             partial(mainapp.tab_widget.setCurrentIndex, 2))
+    mainapp.handler.set_button_funct(mainapp.handler.cap_button_back,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 0))
+    mainapp.handler.set_button_funct(mainapp.handler.cap_button_next,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 2))
     
-    mainapp.set_button_funct(mainapp.filt_button_back,
-                             partial(mainapp.tab_widget.setCurrentIndex, 1))
+    mainapp.handler.set_button_funct(mainapp.handler.filt_button_back,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
     
-    mainapp.set_button_funct(mainapp.filt_button_next,
-                             partial(mainapp.tab_widget.setCurrentIndex, 3))
+    mainapp.handler.set_button_funct(mainapp.handler.filt_button_next,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 3))
+
+    mainapp.handler.set_button_funct(mainapp.handler.mod_button_back,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 2))
     
-    mainapp.set_button_funct(mainapp.mod_button_back,
-                             partial(mainapp.tab_widget.setCurrentIndex, 2))
-    
-    mainapp.set_button_funct(mainapp.mod_button_stop, mainapp.start_capture)
+    mainapp.handler.set_button_funct(mainapp.handler.mod_button_stop, mainapp.start_capture)
     
     
-    mainapp.set_button_funct(mainapp.mod_button_show, partial(mainapp.nothing))
+    mainapp.handler.set_button_funct(mainapp.handler.mod_button_show, partial(mainapp.handler.nothing))
     
-    mainapp.cap_list_packets.cellDoubleClicked['int','int'].connect(
-            partial(mainapp.cell_was_clicked))
+    mainapp.handler.cap_list_packets.cellDoubleClicked['int','int'].connect(
+            partial(mainapp.handler.cell_was_clicked))
     
-    mainapp.closeEvent=mainapp.close_event_message_box
-    mainapp.set_fit_width()
-    mainapp.show()
+    mainapp.closeEvent=mainapp.handler.close_event_message_box
+    mainapp.handler.set_fit_width()
+    mainapp.handler.show()
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
