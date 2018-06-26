@@ -20,8 +20,9 @@ from .nfqueue import QueuePacketCatcher
 def main():
     app = QApplication(sys.argv)
     mainapp = QueuePacketCatcher()
+    app.aboutToQuit.connect(mainapp.stop_capture)
     mainapp.handler.set_button_funct(mainapp.handler.cap_button_sniff, mainapp.start_capture)
-    
+
     mainapp.handler.set_button_funct(mainapp.handler.info_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
 

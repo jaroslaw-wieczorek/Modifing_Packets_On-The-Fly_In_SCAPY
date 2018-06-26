@@ -54,6 +54,13 @@ class QueuePacketCatcher:
             print("stopping")
             self.restoreIPTables(self.directory, self.backup)
             self.runing = False
+    def stop_capture(self):
+        print("stopping")
+        if(self.runing==True):
+            print("restoring")
+            self.restoreIPTables(self.directory, self.backup)
+            self.runing = False
+
 
     def backupIPTables(self, directory, filename):
         if not os.path.exists(directory):
