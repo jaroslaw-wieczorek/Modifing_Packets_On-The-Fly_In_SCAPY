@@ -148,16 +148,9 @@
       </widget>
       <widget class="QWidget" name="filters_tab">
        <attribute name="title">
-        <string>Filtry</string>
+        <string>Filtry i modyfikatory</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="4" column="2">
-         <widget class="QPushButton" name="filt_button_next">
-          <property name="text">
-           <string>Dalej</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="1">
          <widget class="QPushButton" name="filt_button_create_filter">
           <property name="text">
@@ -169,6 +162,13 @@
          <widget class="QPushButton" name="filt_button_back">
           <property name="text">
            <string>Powrót</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="2">
+         <widget class="QPushButton" name="filt_button_next">
+          <property name="text">
+           <string>Dalej</string>
           </property>
          </widget>
         </item>
@@ -186,6 +186,11 @@
           </column>
           <column>
            <property name="text">
+            <string>Modyfikator</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
             <string>Aktywny</string>
            </property>
           </column>
@@ -194,7 +199,7 @@
             <string>IP.src=192.168.1.100</string>
            </property>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="2">
            <property name="text">
             <string>True</string>
            </property>
