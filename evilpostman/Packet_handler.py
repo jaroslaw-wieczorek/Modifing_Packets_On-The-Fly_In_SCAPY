@@ -17,7 +17,42 @@ class Packet_handler(Window):
         if pkt.haslayer(layer):
             self.add_row_to_mod_list_packets(pkt)
 
-    def handle_my_packet(self, packet):
-        self.add_row_to_cap_list_packets(packet)
-        #self.pkt_hasLayer(pkt, TCP)
+    def filter(self, packet):
+        #checks if packet applies to filter
+        #packet_copy=packet
+        #current_dic = self.filter_dic
+        for name, protocols in self.filter_dic:
+            if self.protocol_verify(packet, protocols):
+                return [True, name]
+
+        return [False, False]
+
+    def protocol_verify(self,packet, protocols):
+        for protocol in protocols:
+            try:
+                protocol_curr = packet[protocol[0]]
+                if protocol_curr:
+                    for value in protocol[1:]:
+                        if getattr(protocol_curr, value[0]) != value[1]:
+                            return False
+            except:
+                return False
+        return True
+    def modify(self, packet, filter_name):
+        #modifies packet
+        for protocol in self.modify_dic[filter_name]:
+            if packet[protocol[0]]:
+                 for value in protocol[1:]:
+                     #getattr(protocol_curr, value[0]) != value[1]:
+                     setattr(packet[protocol[0]], value[0], value[1])
         return packet
+
+    def handle_my_packet(self, packet):
+        packetino = packet
+        self.add_row_to_cap_list_packets(packetino)
+        filter_result = self.filter(packetino)
+        if filter_result[0]:
+            packetino = self.modify(packetino, filter_result[1])
+            #modifies the packet adds to modified list
+            self.add_row_to_mod_list_packets(packetino)
+        return packetino
