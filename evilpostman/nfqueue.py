@@ -29,13 +29,13 @@ class QueuePacketCatcher:
         self.captured_packets = list()
         self.runing = False
         self.nfqueue = NetfilterQueue()
-        self.nfqueue.bind(1, self.modify, mode=COPY_PACKET)
+        self.nfqueue.bind(1, self.tamper, mode=COPY_PACKET)
         self.qworker = NFQController(self.nfqueue)
         self.directory = "iptables-backup"
         self.backup = "backup"
         self.handler = Packet_handler()
 
-    def modify(self, packet):
+    def tamper(self, packet):
         pkt = IP(packet.get_payload())
         #print(pkt.dst)
         pkt = self.handler.handle_my_packet(pkt)
