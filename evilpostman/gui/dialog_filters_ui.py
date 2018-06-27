@@ -12,7 +12,7 @@ class Ui_DailogFilter(object):
     def setupUi(self, DailogFilter):
         DailogFilter.setObjectName("DailogFilter")
         DailogFilter.resize(400, 500)
-        DailogFilter.setMaximumSize(QtCore.QSize(400, 500))
+        DailogFilter.setMaximumSize(QtCore.QSize(400, 600))
         self.main_dialog_vertical_layout = QtWidgets.QVBoxLayout(DailogFilter)
         self.main_dialog_vertical_layout.setObjectName("main_dialog_vertical_layout")
         self.vertical_layout = QtWidgets.QVBoxLayout()

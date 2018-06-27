@@ -7,6 +7,8 @@ Created on Tue Jun 26 20:06:02 2018
 """
 import os
 import sys
+from functools import partial
+
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 
@@ -94,8 +96,8 @@ class Filters(QDialog, Ui_DailogFilter):
             create space in new tab(tab_widget) for protocol fields
             
         """
-        child = self.findChild(QWidget, "tab_"+str(self.currentProtocolName))
-      
+        child = self.tab_widget.findChild(QWidget, "tab_"+str(self.currentProtocolName))
+        print(child)
         if self.currentProtocolName == "" or self.currentProtocolData is None:
             print("Wybierz najpierw protokół")
             return False
@@ -125,19 +127,41 @@ class Filters(QDialog, Ui_DailogFilter):
         self.fields = []
         for i in self.currentProtocolData.fields_desc:
             self.fields.append((i.name, type(i), getattr(self.currentProtocolData, i.name, 0)))
-        
-        self.addFilter()    
-        
-    def removeChild(self):
-        child = self.findChild(QVBoxLayout, "vbox_"+self.currentProtocolName)
-        self.removeItem(child)
+        self.addFilter() 
         
         
+    def clearLayout(self, layout):
+        if layout is not None:
+            while layout.count():
+                item = layout.takeAt(0)
+                widget = item.widget()
+                if widget is not None:
+                    widget.deleteLater()
+                else:
+                    self.clearLayout(item.layout())     
+        
+        
+    def removeTab(self):
+        child : QWidget = self.tab_widget.findChild(QWidget, "tab_"+str(self.currentProtocolName))
+        print(child)
+        
+        self.vert_tab.removeWidget(self.current_tab)
+        self.tab_widget.removeTab(self.tab_widget.currentIndex()) 
+        child.setObjectName("")
+        self.current_tab = None
+            
+
     def addFilter(self):
         self.vbox = QVBoxLayout()
-        self.vbox.setObjectName(self.currentProtocolName)
+        self.vbox.setObjectName("vbox_" + self.currentProtocolName)
         
+        button_close = QPushButton("X")
+        
+        button_close.clicked.connect(self.removeTab)
+        self.vbox.addWidget(button_close)
+
         for field in self.fields:
+
             hbox = QHBoxLayout()
             hbox.setObjectName(self.currentProtocolName)
             
