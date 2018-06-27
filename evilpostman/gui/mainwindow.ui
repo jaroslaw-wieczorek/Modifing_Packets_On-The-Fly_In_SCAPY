@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>690</width>
-    <height>540</height>
+    <height>640</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>EvilPostman</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_4">
+   <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tab_widget">
       <property name="enabled">
@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>4</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -148,7 +148,7 @@
       </widget>
       <widget class="QWidget" name="filters_tab">
        <attribute name="title">
-        <string>Filtry i modyfikatory</string>
+        <string>Filtry</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="4" column="1">
@@ -178,30 +178,153 @@
            <property name="text">
             <string>1</string>
            </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
           </row>
+          <column>
+           <property name="text">
+            <string>Nazwa filtra</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Filtr</string>
            </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Modyfikator</string>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
            </property>
           </column>
           <column>
            <property name="text">
-            <string>Aktywny</string>
+            <string>Włączony</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
            </property>
           </column>
           <item row="0" column="0">
            <property name="text">
-            <string>IP.src=192.168.1.100</string>
+            <string>FajowyFiltr</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>TCP.src=5000</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
            </property>
           </item>
           <item row="0" column="2">
            <property name="text">
-            <string>True</string>
+            <string/>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+           <property name="checkState">
+            <enum>Checked</enum>
+           </property>
+           <property name="flags">
+            <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="modifiers_tab">
+       <attribute name="title">
+        <string>Modyfikatory</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="2" column="1">
+         <widget class="QPushButton" name="modifiers_button_create_modifier">
+          <property name="text">
+           <string>Utwórz modyfikator</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QPushButton" name="modifiers_button_next">
+          <property name="text">
+           <string>Dalej</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="modifiers_button_back">
+          <property name="text">
+           <string>Powrót</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3">
+         <widget class="QTableWidget" name="modifiers_list_packets">
+          <row>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </row>
+          <column>
+           <property name="text">
+            <string>Nazwa modyfikatora</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Przypisany filtr</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Włączony</string>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+          </column>
+          <item row="0" column="0">
+           <property name="text">
+            <string>FajowyFiltr</string>
+           </property>
+          </item>
+          <item row="0" column="1">
+           <property name="text">
+            <string>TCP.src=5000</string>
+           </property>
+          </item>
+          <item row="0" column="2">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="toolTip">
+            <string notr="true"/>
+           </property>
+           <property name="whatsThis">
+            <string notr="true"/>
+           </property>
+           <property name="textAlignment">
+            <set>AlignCenter</set>
+           </property>
+           <property name="checkState">
+            <enum>Checked</enum>
+           </property>
+           <property name="flags">
+            <set>ItemIsUserCheckable|ItemIsEnabled</set>
            </property>
           </item>
          </widget>
@@ -214,28 +337,28 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="1">
-         <widget class="QPushButton" name="mod_button_show">
+         <widget class="QPushButton" name="modlist_button_show">
           <property name="text">
            <string>Pokaż pakiet</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="mod_button_back">
+         <widget class="QPushButton" name="modlist_button_back">
           <property name="text">
            <string>powrót</string>
           </property>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QPushButton" name="mod_button_stop">
+         <widget class="QPushButton" name="modlist_button_stop">
           <property name="text">
            <string>Zatrzymaj działanie</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="mod_list_packets">
+         <widget class="QTableWidget" name="modlist_list_packets">
           <column>
            <property name="text">
             <string>Pakiet</string>
