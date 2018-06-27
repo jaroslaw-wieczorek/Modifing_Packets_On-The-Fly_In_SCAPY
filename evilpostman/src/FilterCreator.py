@@ -70,7 +70,15 @@ class Filters(QDialog, Ui_DailogFilter):
         self.protocol_combo_box.activated.connect(self.handleActivated)
         self.add_push_button.clicked.connect(self.createTabWithProtocol)
         
-        
+        self.tab_widget.tabCloseRequested.connect(self.removeTab)
+        self.tab_widget.setTabsClosable(True)
+    
+    
+    def removeTab(self, index):
+        widget = self.tab_widget.widget(index)
+        if widget is not None:
+            widget.deleteLater()
+        self.tab_widget.removeTab(index) 
         
     def setupWindow(self):
         self.setWindowTitle(self.title)   
@@ -108,7 +116,7 @@ class Filters(QDialog, Ui_DailogFilter):
         
         self.current_tab = QWidget()
         self.current_tab.setObjectName("tab_"+str(self.currentProtocolName))
-    
+        
         self.tab_widget.addTab(self.current_tab, self.currentProtocolName)
 
         self.vert_tab = QtWidgets.QVBoxLayout(self.current_tab)
@@ -128,37 +136,22 @@ class Filters(QDialog, Ui_DailogFilter):
         for i in self.currentProtocolData.fields_desc:
             self.fields.append((i.name, type(i), getattr(self.currentProtocolData, i.name, 0)))
         self.addFilter() 
+
         
         
-    def clearLayout(self, layout):
-        if layout is not None:
-            while layout.count():
-                item = layout.takeAt(0)
-                widget = item.widget()
-                if widget is not None:
-                    widget.deleteLater()
-                else:
-                    self.clearLayout(item.layout())     
-        
-        
-    def removeTab(self):
+    def deleteTab(self):
+        self.tab_widget.removeTab() 
+
         child : QWidget = self.tab_widget.findChild(QWidget, "tab_"+str(self.currentProtocolName))
         print(child)
-        
         self.vert_tab.removeWidget(self.current_tab)
-        self.tab_widget.removeTab(self.tab_widget.currentIndex()) 
-        child.setObjectName("")
+      
         self.current_tab = None
             
 
     def addFilter(self):
         self.vbox = QVBoxLayout()
         self.vbox.setObjectName("vbox_" + self.currentProtocolName)
-        
-        button_close = QPushButton("X")
-        
-        button_close.clicked.connect(self.removeTab)
-        self.vbox.addWidget(button_close)
 
         for field in self.fields:
 
