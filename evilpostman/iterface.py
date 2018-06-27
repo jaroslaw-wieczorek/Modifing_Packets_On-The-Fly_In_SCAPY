@@ -61,19 +61,19 @@ class Window(QMainWindow, Ui_MainWindow):
         
             
         
-    def add_row_to_filt_list_packets(self, newFilter):
-        newRowNum = self.filter_list_packets.rowCount()
-        print("Nowy numer pakietu:", newRowNum)
-        self.filter_list_packets.insertRow(newRowNum)
-        self.filter_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newFilter))
-        self.filter_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
+    #def add_row_to_filt_list_packets(self, newFilter):
+    #    newRowNum = self.filter_list_packets.rowCount()
+    #    print("Nowy numer pakietu:", newRowNum)
+    #    self.cap_list_packets.insertRow(newRowNum)
+    #    self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newFilter))
+    #    self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
      
               
     def add_row_to_mod_list_packets (self, pkt):
         newRowNum = self.mod_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.mod_list_packets.insertRow(newRowNum)
-        self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
+        self.modified_list_packets.insertRow(newRowNum)
+        self.modified_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
     
     def get_packet_from_cap_list(self, row):
         #self.tab_widget.
@@ -87,9 +87,9 @@ class Window(QMainWindow, Ui_MainWindow):
         print(self.pkt)
     
     def set_fit_width(self):
-        self.mod_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.modified_list_packets.horizontalHeader().setStretchLastSection(True)
         self.cap_list_packets.horizontalHeader().setStretchLastSection(True)
-        self.filter_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.filters_list_of_filters.horizontalHeader().setStretchLastSection(True)
         
 
     def close_event_message_box(self, event):
