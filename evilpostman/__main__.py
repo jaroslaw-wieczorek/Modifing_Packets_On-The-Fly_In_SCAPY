@@ -31,25 +31,25 @@ def main():
     mainapp.handler.set_button_funct(mainapp.handler.cap_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 2))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filter_button_back,
+    mainapp.handler.set_button_funct(mainapp.handler.filters_button_back,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filter_button_next,
+    mainapp.handler.set_button_funct(mainapp.handler.filters_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 3))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filter_button_back,
+    mainapp.handler.set_button_funct(mainapp.handler.filters_button_back,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filter_button_next,
+    mainapp.handler.set_button_funct(mainapp.handler.filters_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 3))
 
     mainapp.handler.set_button_funct(mainapp.handler.modifiers_button_back,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 2))
     
-    mainapp.handler.set_button_funct(mainapp.handler.modlist_button_stop, mainapp.start_capture)
+    mainapp.handler.set_button_funct(mainapp.handler.modified_button_stop, mainapp.start_capture)
     
     
-    mainapp.handler.set_button_funct(mainapp.handler.modlist_button_show, partial(mainapp.handler.nothing))
+    mainapp.handler.set_button_funct(mainapp.handler.modified_button_show, partial(mainapp.handler.nothing))
     
     mainapp.handler.cap_list_packets.cellDoubleClicked['int','int'].connect(
             partial(mainapp.handler.cell_was_clicked))
