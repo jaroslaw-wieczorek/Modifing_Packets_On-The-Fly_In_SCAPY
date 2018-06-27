@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -152,28 +152,28 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="4" column="1">
-         <widget class="QPushButton" name="filter_button_create_filter">
+         <widget class="QPushButton" name="filters_button_create_filter">
           <property name="text">
            <string>Utwórz filtr</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="filter_button_back">
+         <widget class="QPushButton" name="filters_button_back">
           <property name="text">
            <string>Powrót</string>
           </property>
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QPushButton" name="filter_button_next">
+         <widget class="QPushButton" name="filters_button_next">
           <property name="text">
            <string>Dalej</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="filter_list_packets">
+         <widget class="QTableWidget" name="filters_list_of_filters">
           <row>
            <property name="text">
             <string>1</string>
@@ -267,7 +267,7 @@
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="modifiers_list_packets">
+         <widget class="QTableWidget" name="modifiers_list_of_mods">
           <row>
            <property name="text">
             <string>1</string>
@@ -337,28 +337,28 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="1" column="1">
-         <widget class="QPushButton" name="modlist_button_show">
+         <widget class="QPushButton" name="modlified_button_show">
           <property name="text">
            <string>Pokaż pakiet</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="modlist_button_back">
+         <widget class="QPushButton" name="modlified_button_back">
           <property name="text">
            <string>powrót</string>
           </property>
          </widget>
         </item>
         <item row="1" column="2">
-         <widget class="QPushButton" name="modlist_button_stop">
+         <widget class="QPushButton" name="modlified_button_stop">
           <property name="text">
            <string>Zatrzymaj działanie</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="modlist_list_packets">
+         <widget class="QTableWidget" name="modlified_list_packets">
           <column>
            <property name="text">
             <string>Pakiet</string>
