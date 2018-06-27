@@ -31,10 +31,16 @@ def main():
     mainapp.handler.set_button_funct(mainapp.handler.cap_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 2))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filt_button_back,
+    mainapp.handler.set_button_funct(mainapp.handler.filter_button_back,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filt_button_next,
+    mainapp.handler.set_button_funct(mainapp.handler.filter_button_next,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 3))
+    
+        mainapp.handler.set_button_funct(mainapp.handler.filter_button_back,
+                             partial(mainapp.handler.tab_widget.setCurrentIndex, 1))
+    
+    mainapp.handler.set_button_funct(mainapp.handler.filter_button_next,
                              partial(mainapp.handler.tab_widget.setCurrentIndex, 3))
 
     mainapp.handler.set_button_funct(mainapp.handler.mod_button_back,
