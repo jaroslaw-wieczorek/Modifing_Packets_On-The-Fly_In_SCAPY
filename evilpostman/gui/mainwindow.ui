@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QTabWidget" name="tab_widget">
       <property name="enabled">
        <bool>true</bool>
@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -152,28 +152,28 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="4" column="1">
-         <widget class="QPushButton" name="filt_button_create_filter">
+         <widget class="QPushButton" name="filter_button_create_filter">
           <property name="text">
            <string>Utwórz filtr</string>
           </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QPushButton" name="filt_button_back">
+         <widget class="QPushButton" name="filter_button_back">
           <property name="text">
            <string>Powrót</string>
           </property>
          </widget>
         </item>
         <item row="4" column="2">
-         <widget class="QPushButton" name="filt_button_next">
+         <widget class="QPushButton" name="filter_button_next">
           <property name="text">
            <string>Dalej</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="filt_list_packets">
+         <widget class="QTableWidget" name="filter_list_packets">
           <row>
            <property name="text">
             <string>1</string>
@@ -408,12 +408,12 @@
    <slot>update()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>460</x>
-     <y>500</y>
+     <x>567</x>
+     <y>600</y>
     </hint>
     <hint type="destinationlabel">
-     <x>463</x>
-     <y>500</y>
+     <x>567</x>
+     <y>600</y>
     </hint>
    </hints>
   </connection>
