@@ -22,7 +22,7 @@ print(lib_path)
 
 from evilpostman.pyqt_scapy_item  import PyQtScapyTableWidgetItem
 
-
+from evilpostman.src.FilterCreator import Filters
 from gui.mainwindow_ui import Ui_MainWindow
 
 
@@ -40,7 +40,15 @@ class Window(QMainWindow, Ui_MainWindow):
     
     def set_button_funct(self, button, funct):
         button.clicked.connect(funct)
-        #P()
+    
+    def openFilterCreator(self):
+        title = "Kreator filtrów"
+        self.filters = Filters(title)
+        
+        
+    def openModifiersCreator(self):
+        pass
+        
    
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()
@@ -61,11 +69,11 @@ class Window(QMainWindow, Ui_MainWindow):
         self.filt_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
      
               
-    def add_row_to_modlist_list_packets (self, pkt):
+    def add_row_to_mod_list_packets (self, pkt):
         newRowNum = self.mod_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.modlist_list_packets.insertRow(newRowNum)
-        self.modlist_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
+        self.mod_list_packets.insertRow(newRowNum)
+        self.mod_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
     
     def get_packet_from_cap_list(self, row):
         #self.tab_widget.
@@ -79,7 +87,7 @@ class Window(QMainWindow, Ui_MainWindow):
         print(self.pkt)
     
     def set_fit_width(self):
-        self.modlist_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.mod_list_packets.horizontalHeader().setStretchLastSection(True)
         self.cap_list_packets.horizontalHeader().setStretchLastSection(True)
         self.filt_list_packets.horizontalHeader().setStretchLastSection(True)
         
@@ -90,7 +98,7 @@ class Window(QMainWindow, Ui_MainWindow):
             "Czy napewno chcesz zakończyć? ", QMessageBox.Yes, QMessageBox.No)
         
         
-
+        
 
 
     def nothing(self):
