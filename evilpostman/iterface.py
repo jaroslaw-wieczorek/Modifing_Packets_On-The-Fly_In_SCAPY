@@ -61,8 +61,10 @@ class Window(QMainWindow, Ui_MainWindow):
         for name, protocols in filters_dict.items():
             protolist = []
             protolist.append(name)
+            eptylista = []
             for protocol in protocols:
-                protolist.append(protocol[0])
+                epptylista.append(protocol[0])
+            protolist.append(eptylista)
             filters.append(protolist)
         self.modifiers = Modifiers(title,filters)
         if self.modifiers.exec_() == QDialog.Accepted:
