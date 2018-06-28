@@ -176,7 +176,14 @@ class Filters(QDialog, Ui_DailogFilter):
         self.addFilter() 
 
         self.getValues()
-            
+
+    def disable_text_box(self, state):
+        print(state)
+        if state == 0:
+            pass
+        else:
+            pass
+        pass
 
     def addFilter(self):
         self.vbox = QVBoxLayout()
@@ -188,15 +195,20 @@ class Filters(QDialog, Ui_DailogFilter):
             hbox.setObjectName(self.currentProtocolName)
             
             # Dodaj QLabel o danej nazwie obiektu 
-            label = QLabel(self.currentProtocolName+"_"+str(field[0]))
+            label = QLabel(str(field[0]))
             label.width=200
             label.height=30
             label.maximumHeight=30
             label.maximumWidth=200
             hbox.addWidget(label)
-            
+
             hbox.addWidget(QLineEdit())
-            hbox.addWidget(QCheckBox("use it"))
+            checkbox = QCheckBox("use it")
+            checkbox.stateChanged.connect(self.disable_text_box)
+
+            hbox.addWidget(checkbox)
+
+
             self.vbox.addStretch(1)
             self.vbox.addLayout(hbox)
              
