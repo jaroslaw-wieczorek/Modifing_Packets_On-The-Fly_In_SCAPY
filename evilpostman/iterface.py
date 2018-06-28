@@ -60,8 +60,9 @@ class Window(QMainWindow, Ui_MainWindow):
         self.modifiers = Modifiers(title)
         if self.modifiers.exec_() == QDialog.Accepted:
             self.modifiers_diki = self.modifiers.getValues()
+            
+            self.add_row_to_modifiers_list_of_mods(self.modifiers_diki)
         
-      
             
     #  filters_list_of_filters
     def add_row_to_filters_list_of_filters(self, newFilter):
@@ -100,9 +101,6 @@ class Window(QMainWindow, Ui_MainWindow):
         item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
         self.modified_list_of_packets.setItem(newRowNum, 0, item)
         
-    
-        
-   
               
     def add_row_to_modified_list_of_packets (self, pkt):
         newRowNum = self.modified_list_packets.rowCount()

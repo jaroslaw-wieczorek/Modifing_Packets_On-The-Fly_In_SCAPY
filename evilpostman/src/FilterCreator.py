@@ -77,7 +77,10 @@ class Filters(QDialog, Ui_DailogFilter):
         
         self.tab_widget.tabCloseRequested.connect(self.removeTab)
         self.tab_widget.setTabsClosable(True)
-        
+    
+
+    def addFromPacekt(self):
+        pass
     
     def removeTab(self, index):
         widget = self.tab_widget.widget(index)
