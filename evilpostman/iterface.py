@@ -30,11 +30,13 @@ from gui.mainwindow_ui import Ui_MainWindow
 
 
 class Window(QMainWindow, Ui_MainWindow):
-    
+    filtering_diki = {}
     def __init__(self):
         super(QMainWindow, self).__init__()
-     
-        
+
+    def magical(self):
+        return self.filtering_diki
+
     def keyPressEvent(self, e):
         if e.key() == QtCore.Qt.Key_Escape:
             self.close()
@@ -57,10 +59,9 @@ class Window(QMainWindow, Ui_MainWindow):
         self.modifiers = Modifiers(title)
         if self.modifiers.exec_() == QDialog.Accepted:
            
-            tmp_dict=self.modifiers.getValues()
-            print(tmp_dict)
-        
-   
+            self.filtering_diki = self.modifiers.getValues()
+            #print(tmp_dict)
+
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
@@ -81,10 +82,11 @@ class Window(QMainWindow, Ui_MainWindow):
      
               
     def add_row_to_mod_list_packets (self, pkt):
-        newRowNum = self.mod_list_packets.rowCount()
+        newRowNum = self.modified_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.modified_list_packets.insertRow(newRowNum)
         self.modified_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
+
     
     def get_packet_from_cap_list(self, row):
         #self.tab_widget.
