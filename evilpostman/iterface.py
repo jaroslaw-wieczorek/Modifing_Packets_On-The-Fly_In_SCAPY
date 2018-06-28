@@ -63,7 +63,7 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()
-        print("Nowy numer pakietu:", newRowNum)
+        #print("Nowy numer pakietu:", newRowNum)
         self.cap_list_packets.insertRow(newRowNum)
         item = QTableWidgetItem(pkt.summary())
       #  print(item.flags())
