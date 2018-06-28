@@ -125,8 +125,17 @@ class Filters(QDialog, Ui_DailogFilter):
         del returned_list[-1]
         name = self.name_line_edit.text()
         self.dictionary[name] = returned_list
-        
-        # print(self.dictionary)
+        print(self.dictionary)
+        for name, protocols in self.dictionary.items():
+            for protocol in protocols:
+                i = 1
+                for value in protocol[1:]:
+                    if len(value[1]) < 1:
+                        protocol.remove(value)
+                    else:
+                        print(type(value[1]))
+                    i = i+1
+        print(self.dictionary)
         return self.dictionary
             
         

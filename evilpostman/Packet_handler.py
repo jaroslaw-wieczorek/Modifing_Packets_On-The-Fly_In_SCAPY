@@ -21,7 +21,7 @@ class Packet_handler(Window):
         #checks if packet applies to filter
         #packet_copy=packet
         #current_dic = self.filter_dic
-        for name, protocols in self.filter_dic:
+        for name, protocols in self.dictionary:
             if self.protocol_verify(packet, protocols):
                 return [True, name]
 
@@ -52,6 +52,7 @@ class Packet_handler(Window):
         self.add_row_to_cap_list_packets(packetino)
         filter_result = self.filter(packetino)
         if filter_result[0]:
+            print("CAUGHT ONE")
             packetino = self.modify(packetino, filter_result[1])
             #modifies the packet adds to modified list
             self.add_row_to_mod_list_packets(packetino)
