@@ -108,7 +108,7 @@ class Window(QMainWindow, Ui_MainWindow):
         
               
     def add_row_to_modified_list_of_packets (self, pkt):
-        newRowNum = self.modified_list_packets.rowCount()
+        newRowNum = self.modified_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.modified_list_of_packets.insertRow(newRowNum)
         self.modified_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))

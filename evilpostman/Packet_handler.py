@@ -52,7 +52,7 @@ class Packet_handler(Window):
 
     def handle_my_packet(self, packet):
         packetino = packet
-        self.add_row_to_cap_list_packets(packetino)
+        self.add_row_to_cap_list_of_packets(packetino)
         filter_result = self.filter(packetino)
         #self.add_row_to_mod_list_packets(packetino)
         #print(filter_result[0])
@@ -60,5 +60,5 @@ class Packet_handler(Window):
             print("CAUGHT ONE")
             #packetino = self.modify(packetino, filter_result[1])
             #modifies the packet adds to modified list
-            self.add_row_to_mod_list_packets(packetino)
+            self.add_row_to_modified_list_of_packets(packetino)
         return packetino
