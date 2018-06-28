@@ -54,38 +54,62 @@ class Window(QMainWindow, Ui_MainWindow):
             tmp_dict=self.filters.getValues()
             print(tmp_dict)
         
+        
     def openModifiersCreator(self):
         title = "Kreator modifikatorów"
         self.modifiers = Modifiers(title)
         if self.modifiers.exec_() == QDialog.Accepted:
-           
             self.filtering_diki = self.modifiers.getValues()
-            #print(tmp_dict)
-
-    def add_row_to_cap_list_packets(self, pkt):
-        newRowNum = self.cap_list_packets.rowCount()
+        
+        self.add_row_to_filter_list_of_packets(self.filtering_diki)
+    
+            
+    #  filters_list_of_filters
+    def add_row_to_filters_list_of_filters(self, newFilter):
+        newRowNum = self.filters_list_of_filters.rowCount()
+        print("Nowy filter:", newRowNum)
+        self.filters_list_of_filters.insertRow(newRowNum)
+        self.filters_list_of_filters.setItem(newRowNum, 0, newFilter.keys())
+        self.filters_list_of_filters.setItem(newRowNum, 1, newFilter)
+     
+                
+    #  modifiers_list_of_mods
+    def add_row_to_modifiers_list_of_mods(self, newFilter):
+        newRowNum = self.modifiers_list_of_mods.rowCount()
+        print("Nowy filter:", newRowNum)
+        self.modifiers_list_of_mods.insertRow(newRowNum)
+        self.modifiers_list_of_mods.setItem(newRowNum, 0, newFilter.keys())
+        self.modifiers_list_of_mods.setItem(newRowNum, 1, newFilter)
+     
+    # cap_list_of_packets
+    def add_row_to_cap_list_of_packets(self, pkt):
+        newRowNum = self.cap_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.cap_list_packets.insertRow(newRowNum)
+        self.cap_list_of_packets.insertRow(newRowNum)
         item = QTableWidgetItem(pkt.summary())
       #  print(item.flags())
         item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
-        self.cap_list_packets.setItem(newRowNum, 0, item)
+        self.cap_list_of_packets.setItem(newRowNum, 0, item)
+    
+    # modified_list_of_packets
+    def add_row_to_modified_list_of_packets(self, pkt):
+        newRowNum = self.modified_list_of_packets.rowCount()
+        print("Nowy numer pakietu:", newRowNum)
+        self.modified_list_of_packets.insertRow(newRowNum)
+        item = QTableWidgetItem(pkt.summary())
+      #  print(item.flags())
+        item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
+        self.modified_list_of_packets.setItem(newRowNum, 0, item)
         
-            
+    
         
-    #def add_row_to_filt_list_packets(self, newFilter):
-    #    newRowNum = self.filter_list_packets.rowCount()
-    #    print("Nowy numer pakietu:", newRowNum)
-    #    self.cap_list_packets.insertRow(newRowNum)
-    #    self.cap_list_packets.setItem(newRowNum, 0, QTableWidgetItem(newFilter))
-    #    self.cap_list_packets.setItem(newRowNum, 1, QTableWidgetItem(True))
-     
+   
               
-    def add_row_to_mod_list_packets (self, pkt):
+    def add_row_to_modified_list_of_packets (self, pkt):
         newRowNum = self.modified_list_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
-        self.modified_list_packets.insertRow(newRowNum)
-        self.modified_list_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
+        self.modified_list_of_packets.insertRow(newRowNum)
+        self.modified_list_of_packets.setItem(newRowNum, 0, QTableWidgetItem(pkt.summary()))
 
     
     def get_packet_from_cap_list(self, row):

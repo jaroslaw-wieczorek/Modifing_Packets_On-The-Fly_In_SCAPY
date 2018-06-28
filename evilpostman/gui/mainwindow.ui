@@ -136,7 +136,7 @@
          </widget>
         </item>
         <item row="1" column="0" colspan="4">
-         <widget class="QTableWidget" name="cap_list_packets">
+         <widget class="QTableWidget" name="cap_list_of_packets">
           <column>
            <property name="text">
             <string>Pakiet</string>
@@ -358,7 +358,7 @@
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="modified_list_packets">
+         <widget class="QTableWidget" name="modified_list_of_packets">
           <column>
            <property name="text">
             <string>Pakiet</string>
@@ -418,9 +418,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>cap_list_packets</sender>
+   <sender>cap_list_of_packets</sender>
    <signal>cellDoubleClicked(int,int)</signal>
-   <receiver>cap_list_packets</receiver>
+   <receiver>cap_list_of_packets</receiver>
    <slot>selectRow(int)</slot>
    <hints>
     <hint type="sourcelabel">
