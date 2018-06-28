@@ -30,11 +30,12 @@ from gui.mainwindow_ui import Ui_MainWindow
 
 
 class Window(QMainWindow, Ui_MainWindow):
-    filtering_diki = {}
     def __init__(self):
         super(QMainWindow, self).__init__()
+        self.filtering_diki = {}
 
     def magical(self):
+        print("RETURNING BITCH")
         return self.filtering_diki
 
     def keyPressEvent(self, e):
@@ -50,17 +51,15 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
-
-            tmp_dict=self.filters.getValues()
-            print(tmp_dict)
+            self.filtering_diki =self.filters.getValues()
+            #print(tmp_dict)
         
     def openModifiersCreator(self):
         title = "Kreator modifikatorów"
         self.modifiers = Modifiers(title)
         if self.modifiers.exec_() == QDialog.Accepted:
-           
-            self.filtering_diki = self.modifiers.getValues()
-            #print(tmp_dict)
+            self.modifiers.getValues()
+            #print(self.filtering_diki)
 
     def add_row_to_cap_list_packets(self, pkt):
         newRowNum = self.cap_list_packets.rowCount()
