@@ -162,7 +162,7 @@ class Filters(QDialog, Ui_DailogFilter):
             hbox.setObjectName(self.currentProtocolName)
             
             # Dodaj QLabel o danej nazwie obiektu 
-            label = QLabel(self.currentProtocolName+"_"+str(field[0]))
+            label = QLabel(str(field[0]))
             label.width=200
             label.height=30
             label.maximumHeight=30
