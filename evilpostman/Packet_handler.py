@@ -36,14 +36,14 @@ class Packet_handler(Window):
                 protocol_curr = packet[protocol[0]]
                 if protocol_curr:
                     for value in protocol[1:]:
-                        if getattr(protocol_curr, value[0]) != value[1]:
+                        if str(getattr(protocol_curr, value[0])) != str(value[1]):
                             return False
             except:
                 return False
         return True
     def modify(self, packet, filter_name):
         #modifies packet
-        for protocol in self.modify_dic[filter_name]:
+        for protocol in self.modify_dic[filter_name].items():
             if packet[protocol[0]]:
                  for value in protocol[1:]:
                      #getattr(protocol_curr, value[0]) != value[1]:

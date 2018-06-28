@@ -35,7 +35,6 @@ class Window(QMainWindow, Ui_MainWindow):
         self.filtering_diki = {}
 
     def magical(self):
-        print("RETURNING BITCH")
         return self.filtering_diki
 
     def keyPressEvent(self, e):
@@ -51,7 +50,7 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
-            self.filtering_diki =self.filters.getValues()
+            self.filtering_diki = self.filters.getValues()
             #print(tmp_dict)
             self.add_row_to_filters_list_of_filters(self.filtering_diki)
     
