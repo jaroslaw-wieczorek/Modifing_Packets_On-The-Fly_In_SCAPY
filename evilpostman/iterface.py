@@ -53,16 +53,16 @@ class Window(QMainWindow, Ui_MainWindow):
         if self.filters.exec_() == QDialog.Accepted:
             self.filtering_diki =self.filters.getValues()
             #print(tmp_dict)
-        
+            self.add_row_to_filters_list_of_filters(self.filtering_diki)
+    
         
     def openModifiersCreator(self):
         title = "Kreator modifikatorów"
         self.modifiers = Modifiers(title)
         if self.modifiers.exec_() == QDialog.Accepted:
-            self.filtering_diki = self.modifiers.getValues()
+            self.modifiers_diki = self.modifiers.getValues()
         
-        self.add_row_to_filter_list_of_packets(self.filtering_diki)
-    
+      
             
     #  filters_list_of_filters
     def add_row_to_filters_list_of_filters(self, newFilter):
@@ -124,10 +124,10 @@ class Window(QMainWindow, Ui_MainWindow):
         print(self.pkt)
     
     def set_fit_width(self):
-        self.modified_list_packets.horizontalHeader().setStretchLastSection(True)
-        self.cap_list_packets.horizontalHeader().setStretchLastSection(True)
+        self.modified_list_of_packets.horizontalHeader().setStretchLastSection(True)
+        self.cap_list_of_packets.horizontalHeader().setStretchLastSection(True)
         self.filters_list_of_filters.horizontalHeader().setStretchLastSection(True)
-        
+        self.modifiers_list_of_mods.horizontalHeader().setStretchLastSection(True)
 
     def close_event_message_box(self, event):
         print("event")

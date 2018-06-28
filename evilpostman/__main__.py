@@ -53,7 +53,7 @@ def main():
     
     mainapp.handler.set_button_funct(mainapp.handler.modified_button_show, partial(mainapp.handler.nothing))
     
-    mainapp.handler.cap_list_packets.cellDoubleClicked['int','int'].connect(
+    mainapp.handler.cap_list_of_packets.cellDoubleClicked['int','int'].connect(
             partial(mainapp.handler.cell_was_clicked))
     
     mainapp.handler.set_button_funct(mainapp.handler.filters_button_create_filter, partial(mainapp.handler.openFilterCreator))
