@@ -50,14 +50,21 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
-            self.filtering_diki = self.filters.getValues()
             #print(tmp_dict)
-            self.add_row_to_filters_list_of_filters(self.filtering_diki)
+            self.add_row_to_filters_list_of_filters(self.filters.getValues())
+            return self.filters.getValues()
 
 
-    def openModifiersCreator(self):
+    def openModifiersCreator(self, filters_dict):
         title = "Kreator modifikatorów"
-        self.modifiers = Modifiers(title)
+        filters = []
+        for name, protocols in filters_dict.items():
+            protolist = []
+            protolist.append(name)
+            for protocol in protocols:
+                protolist.append(protocol[0])
+            filters.append(protolist)
+        self.modifiers = Modifiers(title,filters)
         if self.modifiers.exec_() == QDialog.Accepted:
             self.modifiers_diki = self.modifiers.getValues()
             

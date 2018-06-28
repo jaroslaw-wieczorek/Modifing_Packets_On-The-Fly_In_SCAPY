@@ -12,7 +12,17 @@ class Packet_handler(Window):
     def __init__(self):
         super(Window, self).__init__()
         self.setupUi(self)
-        self.magic_filter = None
+        self.magic_filter = {}
+        self.magic_modi = {}
+
+
+    def filter_dialog(self):
+        self.magic_filter.update(self.openFilterCreator())
+        #print(self.magic_filter)
+
+    def modifier_dialog(self):
+        self.magic_modi.update(self.openModifiersCreator(self.magic_filter))
+        #print(self.magic_filter)
 
     def pkt_hasLayer(self, pkt, layer):
         if pkt.haslayer(layer):
@@ -23,7 +33,6 @@ class Packet_handler(Window):
         #packet_copy=packet
         #current_dic = self.filter_dic
 
-        self.magic_filter = self.magical()
         #print(self.magic_filter)
         for name, protocols in self.magic_filter.items():
             if self.protocol_verify(packet, protocols):

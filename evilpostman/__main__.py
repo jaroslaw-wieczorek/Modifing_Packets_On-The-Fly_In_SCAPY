@@ -56,7 +56,7 @@ def main():
     mainapp.handler.cap_list_of_packets.cellDoubleClicked['int','int'].connect(
             partial(mainapp.handler.cell_was_clicked))
     
-    mainapp.handler.set_button_funct(mainapp.handler.filters_button_create_filter, partial(mainapp.handler.openFilterCreator))
+    mainapp.handler.set_button_funct(mainapp.handler.filters_button_create_filter, partial(mainapp.handler.modifier_dialog))
     
     mainapp.closeEvent=mainapp.handler.close_event_message_box
     mainapp.handler.set_fit_width()
