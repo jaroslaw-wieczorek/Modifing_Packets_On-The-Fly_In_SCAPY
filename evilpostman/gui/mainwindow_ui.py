@@ -157,7 +157,7 @@ class Ui_MainWindow(object):
         self.actionFiltry.setObjectName("actionFiltry")
 
         self.retranslateUi(MainWindow)
-        self.tab_widget.setCurrentIndex(1)
+        self.tab_widget.setCurrentIndex(3)
         self.cap_button_sniff.clicked.connect(self.cap_button_sniff.update)
         self.cap_list_of_packets.cellDoubleClicked['int','int'].connect(self.cap_list_of_packets.selectRow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

@@ -54,7 +54,7 @@
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item>
-        <widget class="QComboBox" name="protocol_combo_box">
+        <widget class="QComboBox" name="filters_combo_box">
          <property name="maximumSize">
           <size>
            <width>16777215</width>

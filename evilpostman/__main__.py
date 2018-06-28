@@ -57,7 +57,6 @@ def main():
             partial(mainapp.handler.cell_was_clicked))
     
     mainapp.handler.set_button_funct(mainapp.handler.filters_button_create_filter, partial(mainapp.handler.openFilterCreator))
-    
     mainapp.closeEvent=mainapp.handler.close_event_message_box
     mainapp.handler.set_fit_width()
     mainapp.handler.show()

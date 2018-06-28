@@ -52,41 +52,36 @@ from gui.dialog_modifiers_ui import Ui_DailogModifiers
 
 
 class Modifiers(QDialog, Ui_DailogModifiers):
-    def __init__(self, title:str):
+    def __init__(self, title:str, get_filters):
         super().__init__()
         self.title = title
         self.left = 10
         self.top = 10
         self.setupUi(self)
         self.setupWindow()
-       
         self.show()
+        self.get_filters = get_filters
         self.fields=[]
         self.protocols=[]
         self.vbox=None
-        self.currentProtocolName=None
-        self.currentProtocolData=None
-        
+        self.currentFilterlName=None
+        self.currentFilterData=None
+        self.filters_combo_box : QComboBox
         self.dictionary = {}
-
-        for protocol in conf.layers:
-            self.protocol_combo_box.addItem(protocol.__name__, userData=protocol)
-    
-    
-        self.protocol_combo_box.model().sort(0)
-        self.protocol_combo_box.activated.connect(self.handleActivated)
-        self.add_push_button.clicked.connect(self.createTabWithProtocol)
+        
+        
+        
+        for filtr in self.get_filters:
+            self.filters_combo_box.addItem(str(filtr[0]), userData=filtr[1])
+            print(filtr[0], filtr[1])
+            
+        
+        self.filters_combo_box.model().sort(0)
+        self.filters_combo_box.activated.connect(self.handleActivated)
+        self.add_push_button.clicked.connect(self.createTabWithFilter)
         
         self.tab_widget.tabCloseRequested.connect(self.removeTab)
         self.tab_widget.setTabsClosable(True)
-        
-        
-        
-    def addFromPacket(self):
-        layers = self.example_packet.layers
-        print(layers)
-        pass
-    
         
     
     def removeTab(self, index):
@@ -103,10 +98,9 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         self.horizontal_layout : QHBoxLayout
         self.name_line_edit : QLineEdit
         self.add_push_button : QPushButton
-        self.protocol_combo_box : QComboBox
+        self.filters_combo_box : QComboBox
         self.dialog_buttons : QDialogButtonBox
-        self.example_packet : Packet
-         
+    
         
     def getValues(self):
         
@@ -126,7 +120,6 @@ class Modifiers(QDialog, Ui_DailogModifiers):
             fields = tab.findChildren(QLabel)
             values = tab.findChildren(QLineEdit)
             
-            
             for field_num in range(0, len(fields)):
                 tmp = [fields[field_num].text(), values[field_num].text()]
                 returned_list[tab_num].append(tmp)
@@ -142,49 +135,74 @@ class Modifiers(QDialog, Ui_DailogModifiers):
             
         
     def handleActivated(self, index):
-        self.currentProtocolName = self.protocol_combo_box.itemText(index)
-        self.currentProtocolData = self.protocol_combo_box.itemData(index)
-        print(self.currentProtocolName)
-        print(self.currentProtocolData)
+        self.currentFilterName = self.filters_combo_box.itemText(index)
+        self.currentFilterData = self.filters_combo_box.itemData(index)
+        print(self.currentFilterName)
+        print(self.currentFilterData)
  
     
-    def createTabWithProtocol(self):
+    def createTabWithFilter(self):
         """
-            create space in new tab(tab_widget) for protocol fields
+            create space in new tab(tab_widget) for filter fields
             
         """
-        child = self.tab_widget.findChild(QWidget, "tab_"+str(self.currentProtocolName))
-        print(child)
-        if self.currentProtocolName == "" or self.currentProtocolData is None:
-            print("Wybierz najpierw protokół")
-            return False
-        
-        if not child is None:
-            print("Już dodano ten protokół")
-            return False
-        
-        self.current_tab = QWidget()
-        self.current_tab.setObjectName("tab_"+str(self.currentProtocolName))
-        
-        self.tab_widget.addTab(self.current_tab, self.currentProtocolName)
 
-        self.vert_tab = QtWidgets.QVBoxLayout(self.current_tab)
-        self.vert_tab.setObjectName("ver_"+str(self.currentProtocolName))
-        print(self.vert_tab)
+        if self.tab_widget.count() > 0:
+            print("modyfikator może użyc tylko jeden filter")
+            return False
+        
+        if self.currentFilterName == "" or self.currentFilterData is None:
+            print("Wybierz poprawnycurrentFilterData filtr")
+            return False
+       
+        """
+        if not need_layers == None:
+            
+            for layer in need_layers:
+                self.currentFilterName=layer
+                self.current_tab = QWidget()
+                self.current_tab.setObjectName("tab_"+str(self.currentFilterName))
+        
+                self.tab_widget.addTab(self.current_tab, self.currentFilterName)
+
+                self.vert_tab = QtWidgets.QVBoxLayout(self.current_tab)
+                self.vert_tab.setObjectName("ver_"+str(self.currentFilterName))
+                print(self.vert_tab)
     
-        self.mapProtocolFields()
+                self.mapProtocolFields()
+                return True
+           """ 
+           
+        for protocol_name in self.currentFilterData:
+            for layer in conf.layers:
+                protocol = None
+                
+                if layer.__name__ == protocol_name:
+                    protocol = layer
+                    print(protocol)
+                    
+                self.current_tab = QWidget()
+                self.current_tab.setObjectName("tab_"+str(self.currentFilterName))
+        
+                self.tab_widget.addTab(self.current_tab, protocol.__name__)
+                    
+                self.vert_tab = QtWidgets.QVBoxLayout(self.current_tab)
+                self.vert_tab.setObjectName("ver_"+str(self.currentFilterName))
+                print(self.vert_tab)
+                
+                self.mapProtocolFields(protocol)
     
     
     
-    def mapProtocolFields(self):
+    def mapProtocolFields(self, protocol : Packet):
         """
             save to fields variable tuples contains 3 values on attribute 
                    (field_name, scapy_field_type, set/default_value) 
         """
         self.fields = []
-        for i in self.currentProtocolData.fields_desc:
-            self.fields.append((i.name, type(i), getattr(self.currentProtocolData, i.name, 0)))
-        self.addFilter() 
+        for i in protocol.fields_desc:
+            self.fields.append((i.name, type(i), getattr(self.currentFilterData, i.name, 0)))
+            self.addFilter() 
         
 
     def disable_text_box(self, state):
@@ -198,12 +216,12 @@ class Modifiers(QDialog, Ui_DailogModifiers):
 
     def addFilter(self):
         self.vbox = QVBoxLayout()
-        self.vbox.setObjectName("vbox_" + self.currentProtocolName)
+        self.vbox.setObjectName("vbox_" + self.currentFilterName)
 
         for field in self.fields:
 
             hbox = QHBoxLayout()
-            hbox.setObjectName(self.currentProtocolName)
+            hbox.setObjectName(self.currentFilterName)
             
             # Dodaj QLabel o danej nazwie obiektu 
             label = QLabel(str(field[0]))
@@ -235,7 +253,7 @@ if __name__ == '__main__':
     
 
    # u = Gui(UDP)
-    ex = Modifiers("Modifikatory")
+    ex = Modifiers("Modifikatory", [["Nowa", ["TCP","IP"]], ["SUPER_UDP", ["UDP","IP"]]])
     ex.getValues()
     
     
