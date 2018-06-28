@@ -65,13 +65,12 @@ class Window(QMainWindow, Ui_MainWindow):
             
     #  filters_list_of_filters
     def add_row_to_filters_list_of_filters(self, newFilter):
-        self.filters_list_of_filters.clear()
-        newRowNum = self.filters_list_of_filters.rowCount()
-        print("Nowy filter:", newRowNum)
         for name, protocols in newFilter.items():
             protolist = []
             for protocol in protocols:
                 protolist.append(protocol[0])
+            newRowNum = self.filters_list_of_filters.rowCount()
+            print("Nowy filter:", newRowNum)
             self.filters_list_of_filters.insertRow(newRowNum)
             self.filters_list_of_filters.setItem(newRowNum, 0, QTableWidgetItem(str(name)))
             self.filters_list_of_filters.setItem(newRowNum, 1, QTableWidgetItem(str(protolist)))
