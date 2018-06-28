@@ -53,8 +53,8 @@ class Window(QMainWindow, Ui_MainWindow):
             self.filtering_diki = self.filters.getValues()
             #print(tmp_dict)
             self.add_row_to_filters_list_of_filters(self.filtering_diki)
-    
-        
+
+
     def openModifiersCreator(self):
         title = "Kreator modifikatorów"
         self.modifiers = Modifiers(title)
@@ -65,11 +65,17 @@ class Window(QMainWindow, Ui_MainWindow):
             
     #  filters_list_of_filters
     def add_row_to_filters_list_of_filters(self, newFilter):
+        self.filters_list_of_filters.clear()
         newRowNum = self.filters_list_of_filters.rowCount()
         print("Nowy filter:", newRowNum)
-        self.filters_list_of_filters.insertRow(newRowNum)
-        self.filters_list_of_filters.setItem(newRowNum, 0, newFilter.keys())
-        self.filters_list_of_filters.setItem(newRowNum, 1, newFilter)
+        for name, protocols in newFilter.items():
+            protolist = []
+            for protocol in protocols:
+                protolist.append(protocol[0])
+            self.filters_list_of_filters.insertRow(newRowNum)
+            self.filters_list_of_filters.setItem(newRowNum, 0, QTableWidgetItem(str(name)))
+            self.filters_list_of_filters.setItem(newRowNum, 1, QTableWidgetItem(str(protolist)))
+
      
                 
     #  modifiers_list_of_mods
