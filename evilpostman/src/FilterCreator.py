@@ -61,13 +61,12 @@ class Filters(QDialog, Ui_DailogFilter):
         self.currentProtocolName=None
         self.currentProtocolData=None
         
-        #self.protocol_combo_box.addItem('IP', userData=IP)
-        #self.protocol_combo_box.addItem('TCP', userData=TCP)
-        #self.protocol_combo_box.addItem('UDP', userData=UDP)
-        #self.protocol_combo_box.addItem('ARP', userData=ARP)
+        self.dictionary = {}
+        
 
         for protocol in conf.layers:
             self.protocol_combo_box.addItem(protocol.__name__, userData=protocol)
+        
         self.protocol_combo_box.model().sort(0)
          
         self.protocol_combo_box.activated.connect(self.handleActivated)
@@ -99,20 +98,37 @@ class Filters(QDialog, Ui_DailogFilter):
         
         self.tab_widget : QTabWidget
         tab_number=self.tab_widget.count()
-        lineedits = self.tab_widget.findChildren(QLineEdit)
-        linelabels = self.tab_widget.findChildren(QLabel)
-     #   print("Widget:", self.tab_widget.widget(0))
         
+        
+        returned_list=[[]]
+    
         for tab_num in range(0,self.tab_widget.count()):
             tab : QWidget = self.tab_widget.widget(tab_num)
+            
             protocol_name = self.tab_widget.tabText(tab_num)
-      
-            for label in tab.findChildren(QLabel):
-                label : QLabel
-                print(label.text())
-                
+            
+            returned_list[tab_num].append(protocol_name)
+            print(returned_list)
+            
+            fields = tab.findChildren(QLabel)
+            values = tab.findChildren(QLineEdit)
+            
+            
+            for field_num in range(0, len(fields)):
+                tmp = [fields[field_num].text(), values[field_num].text()]
+                returned_list[tab_num].append(tmp)
+               
+            returned_list.append([])
+          
+        del returned_list[-1]
+       
+
+        name = self.name_line_edit.text()
+        self.dictionary[name] = returned_list
         
-        return 4
+        print(self.dictionary)
+        return self.dictionary
+            
         
     def handleActivated(self, index):
         self.currentProtocolName = self.protocol_combo_box.itemText(index)
@@ -146,6 +162,8 @@ class Filters(QDialog, Ui_DailogFilter):
         print(self.vert_tab)
     
         self.mapProtocolFields()
+    
+    
     
     def mapProtocolFields(self):
         """
