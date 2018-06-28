@@ -23,6 +23,8 @@ print(lib_path)
 from evilpostman.pyqt_scapy_item  import PyQtScapyTableWidgetItem
 
 from evilpostman.src.FilterCreator import Filters
+from evilpostman.src.ModifiersCreator import Modifiers
+
 from gui.mainwindow_ui import Ui_MainWindow
 
 
@@ -46,12 +48,17 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
-            print("HELLO")
+
             tmp_dict=self.filters.getValues()
             print(tmp_dict)
         
     def openModifiersCreator(self):
-        pass
+        title = "Kreator modifikatorów"
+        self.modifiers = Modifiers(title)
+        if self.modifiers.exec_() == QDialog.Accepted:
+           
+            tmp_dict=self.modifiers.getValues()
+            print(tmp_dict)
         
    
     def add_row_to_cap_list_packets(self, pkt):
