@@ -35,7 +35,6 @@ class Window(QMainWindow, Ui_MainWindow):
         self.filtering_diki = {}
 
     def magical(self):
-        print("RETURNING BITCH")
         return self.filtering_diki
 
     def keyPressEvent(self, e):
