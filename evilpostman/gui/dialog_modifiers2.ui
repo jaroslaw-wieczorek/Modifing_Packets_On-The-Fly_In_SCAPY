@@ -38,7 +38,7 @@
      <item>
       <widget class="QLineEdit" name="name_line_edit">
        <property name="text">
-        <string>Nazwa filtru</string>
+        <string>Untitled_1</string>
        </property>
        <property name="placeholderText">
         <string>Nazwa filtra</string>
