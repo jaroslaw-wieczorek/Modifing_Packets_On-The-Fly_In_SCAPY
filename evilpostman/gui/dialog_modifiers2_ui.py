@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/afar/Modifing_Packets_On-The-Fly_In_SCAPY/evilpostman/gui/dialog_modifiers.ui'
+# Form implementation generated from reading ui file '/home/afar/Modifing_Packets_On-The-Fly_In_SCAPY/evilpostman/gui/dialog_modifiers2.ui'
 #
 # Created by: PyQt5 UI code generator 5.10.1
 #
@@ -70,7 +70,7 @@ class Ui_DailogModifiers(object):
         _translate = QtCore.QCoreApplication.translate
         DailogModifiers.setWindowTitle(_translate("DailogModifiers", "Dialog"))
         self.title_label.setText(_translate("DailogModifiers", "Tworzenie modyfikatora"))
-        self.name_line_edit.setText(_translate("DailogModifiers", "Nazwa filtru"))
+        self.name_line_edit.setText(_translate("DailogModifiers", "Untitled_1"))
         self.name_line_edit.setPlaceholderText(_translate("DailogModifiers", "Nazwa filtra"))
         self.add_push_button.setText(_translate("DailogModifiers", "Wybierz"))
 
