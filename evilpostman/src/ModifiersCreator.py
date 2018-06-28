@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Created on Thu Jun 28 11:18:05 2018
+
+@author: afar
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
 Created on Tue Jun 26 20:06:02 2018
 
 @author: afar
@@ -40,10 +48,10 @@ lib_path = os.path.abspath(os.path.join(__file__, '..', '..'))
 sys.path.append(lib_path)
 print(lib_path)
 
-from gui.dialog_filters_ui import Ui_DailogFilter
+from gui.dialog_modifiers_ui import Ui_DailogModifiers
 
 
-class Filters(QDialog, Ui_DailogFilter):
+class Modifiers(QDialog, Ui_DailogModifiers):
     def __init__(self, title : str):
         super().__init__()
         
@@ -198,7 +206,10 @@ class Filters(QDialog, Ui_DailogFilter):
             label.maximumHeight=30
             label.maximumWidth=200
             hbox.addWidget(label)
+
             hbox.addWidget(QLineEdit())
+   
+
             self.vbox.addStretch(1)
             self.vbox.addLayout(hbox)
              
@@ -218,7 +229,7 @@ if __name__ == '__main__':
     
 
    # u = Gui(UDP)
-    ex = Filters("Filters")
+    ex = Modifiers("Modifikatory")
     ex.getValues()
     
     sys.exit(app.exec_())
