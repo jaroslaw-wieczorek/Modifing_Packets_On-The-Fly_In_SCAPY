@@ -61,11 +61,14 @@ class Filters(QDialog, Ui_DailogFilter):
         self.currentProtocolName=None
         self.currentProtocolData=None
         
-        self.protocol_combo_box.addItem('IP', userData=IP)
-        self.protocol_combo_box.addItem('TCP', userData=TCP)
-        self.protocol_combo_box.addItem('UDP', userData=UDP)
-        self.protocol_combo_box.addItem('ARP', userData=ARP)
-        
+        #self.protocol_combo_box.addItem('IP', userData=IP)
+        #self.protocol_combo_box.addItem('TCP', userData=TCP)
+        #self.protocol_combo_box.addItem('UDP', userData=UDP)
+        #self.protocol_combo_box.addItem('ARP', userData=ARP)
+
+        for protocol in conf.layers:
+            self.protocol_combo_box.addItem(protocol.__name__, userData=protocol)
+        self.protocol_combo_box.model().sort(0)
          
         self.protocol_combo_box.activated.connect(self.handleActivated)
         self.add_push_button.clicked.connect(self.createTabWithProtocol)
