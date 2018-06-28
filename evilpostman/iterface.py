@@ -51,7 +51,7 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
-            self.filtering_diki =self.filters.getValues()
+            self.filtering_diki = self.filters.getValues()
             #print(tmp_dict)
         
         
