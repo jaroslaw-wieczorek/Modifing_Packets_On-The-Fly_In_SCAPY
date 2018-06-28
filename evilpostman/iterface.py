@@ -48,7 +48,7 @@ class Window(QMainWindow, Ui_MainWindow):
         if self.filters.exec_() == QDialog.Accepted:
             print("HELLO")
             tmp_dict=self.filters.getValues()
-        
+            print(tmp_dict)
         
     def openModifiersCreator(self):
         pass

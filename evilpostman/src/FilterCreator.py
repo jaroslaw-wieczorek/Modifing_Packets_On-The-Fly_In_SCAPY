@@ -120,8 +120,6 @@ class Filters(QDialog, Ui_DailogFilter):
             returned_list.append([])
           
         del returned_list[-1]
-        
-
         name = self.name_line_edit.text()
         self.dictionary[name] = returned_list
         
@@ -174,7 +172,7 @@ class Filters(QDialog, Ui_DailogFilter):
             self.fields.append((i.name, type(i), getattr(self.currentProtocolData, i.name, 0)))
         self.addFilter() 
 
-        self.getValues()
+        
 
     def disable_text_box(self, state):
         print(state)
@@ -183,6 +181,7 @@ class Filters(QDialog, Ui_DailogFilter):
         else:
             pass
         pass
+    
 
     def addFilter(self):
         self.vbox = QVBoxLayout()
