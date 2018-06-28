@@ -56,15 +56,12 @@ class Window(QMainWindow, Ui_MainWindow):
 
 
     def openModifiersCreator(self, filters_dict):
-        title = "Kreator modifikatorów"
-        protolist = []
-        for name, protocols in filters_dict.items():
-            protolist.append(name)
-        self.modifiers = Modifiers(title, protolist)
-        if self.modifiers.exec_() == QDialog.Accepted:
-            self.modifiers_diki = self.modifiers.getValues()
-            
-            self.add_row_to_modifiers_list_of_mods(self.modifiers_diki)
+        title = "Kreator filtrów"
+        self.filters = Filters(title)
+        if self.filters.exec_() == QDialog.Accepted:
+            # print(tmp_dict)
+            self.add_row_to_modifiers_list_of_mods(self.filters.getValues())
+            return self.filters.getValues()
         
             
     #  filters_list_of_filters
@@ -83,11 +80,15 @@ class Window(QMainWindow, Ui_MainWindow):
                 
     #  modifiers_list_of_mods
     def add_row_to_modifiers_list_of_mods(self, newFilter):
-        newRowNum = self.modifiers_list_of_mods.rowCount()
-        print("Nowy filter:", newRowNum)
-        self.modifiers_list_of_mods.insertRow(newRowNum)
-        self.modifiers_list_of_mods.setItem(newRowNum, 0, newFilter.keys())
-        self.modifiers_list_of_mods.setItem(newRowNum, 1, newFilter)
+        for name, protocols in newFilter.items():
+            protolist = []
+            for protocol in protocols:
+                protolist.append(protocol[0])
+            newRowNum = self.modifiers_list_of_mods.rowCount()
+            print("Nowy filter:", newRowNum)
+            self.modifiers_list_of_mods.insertRow(newRowNum)
+            self.modifiers_list_of_mods.setItem(newRowNum, 0, QTableWidgetItem(str(name)))
+            self.modifiers_list_of_mods.setItem(newRowNum, 1, QTableWidgetItem(str(protolist)))
      
     # cap_list_of_packets
     def add_row_to_cap_list_of_packets(self, pkt):

@@ -52,11 +52,12 @@ class Packet_handler(Window):
         return True
     def modify(self, packet, filter_name):
         #modifies packet
-        for protocol in self.modify_dic[filter_name].items():
-            if packet[protocol[0]]:
-                 for value in protocol[1:]:
-                     #getattr(protocol_curr, value[0]) != value[1]:
-                     setattr(packet[protocol[0]], value[0], value[1])
+        print(self.magic_modi)
+        for protocol in self.magic_modi[filter_name]:
+             if packet[protocol[0]]:
+                  for value in protocol[1:]:
+                      #getattr(protocol_curr, value[0]) != value[1]:
+                      setattr(packet[protocol[0]], value[0], value[1])
         return packet
 
     def handle_my_packet(self, packet):
@@ -67,7 +68,7 @@ class Packet_handler(Window):
         #print(filter_result[0])
         if filter_result[0]:
             print("CAUGHT ONE")
-            #packetino = self.modify(packetino, filter_result[1])
+            packetino = self.modify(packetino, filter_result[1])
             #modifies the packet adds to modified list
             self.add_row_to_modified_list_of_packets(packetino)
         return packetino

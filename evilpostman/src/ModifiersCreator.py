@@ -68,10 +68,17 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         self.currentFilterData=None
         self.filters_combo_box : QComboBox
         self.dictionary = {}
-        
-        
-        
+
+
+
         for filtr in self.get_filters:
+            x = [n.strip() for n in filtr[1]]
+            for layer in conf.layers:
+                for string_name in x:
+                    if layer.__name__ == string_name:
+                        protocol = layer
+
+
             self.filters_combo_box.addItem(str(filtr[0]), userData=filtr[1])
             print(filtr[0], filtr[1])
             
