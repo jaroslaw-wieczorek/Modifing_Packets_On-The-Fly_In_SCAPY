@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -174,14 +174,6 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="filters_list_of_filters">
-          <row>
-           <property name="text">
-            <string>1</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </row>
           <column>
            <property name="text">
             <string>Nazwa filtra</string>
@@ -198,44 +190,6 @@
             <set>AlignCenter</set>
            </property>
           </column>
-          <column>
-           <property name="text">
-            <string>Włączony</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-          <item row="0" column="0">
-           <property name="text">
-            <string>FajowyFiltr</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </item>
-          <item row="0" column="1">
-           <property name="text">
-            <string>TCP.src=5000</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </item>
-          <item row="0" column="2">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-           <property name="flags">
-            <set>ItemIsSelectable|ItemIsUserCheckable|ItemIsEnabled</set>
-           </property>
-          </item>
          </widget>
         </item>
        </layout>
@@ -245,10 +199,10 @@
         <string>Modyfikatory</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
-        <item row="2" column="1">
-         <widget class="QPushButton" name="modifiers_button_create_modifier">
+        <item row="2" column="0">
+         <widget class="QPushButton" name="modifiers_button_back">
           <property name="text">
-           <string>Utwórz modyfikator</string>
+           <string>Powrót</string>
           </property>
          </widget>
         </item>
@@ -259,20 +213,15 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QPushButton" name="modifiers_button_back">
+        <item row="2" column="1">
+         <widget class="QPushButton" name="modifiers_button_create_modifier">
           <property name="text">
-           <string>Powrót</string>
+           <string>Utwórz modyfikator</string>
           </property>
          </widget>
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="modifiers_list_of_mods">
-          <row>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </row>
           <column>
            <property name="text">
             <string>Nazwa modyfikatora</string>
@@ -289,44 +238,6 @@
             <set>AlignCenter</set>
            </property>
           </column>
-          <column>
-           <property name="text">
-            <string>Włączony</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-          <item row="0" column="0">
-           <property name="text">
-            <string>FajowyFiltr</string>
-           </property>
-          </item>
-          <item row="0" column="1">
-           <property name="text">
-            <string>TCP.src=5000</string>
-           </property>
-          </item>
-          <item row="0" column="2">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="toolTip">
-            <string notr="true"/>
-           </property>
-           <property name="whatsThis">
-            <string notr="true"/>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-           <property name="checkState">
-            <enum>Checked</enum>
-           </property>
-           <property name="flags">
-            <set>ItemIsUserCheckable|ItemIsEnabled</set>
-           </property>
-          </item>
          </widget>
         </item>
        </layout>
