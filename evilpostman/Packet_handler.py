@@ -12,6 +12,7 @@ class Packet_handler(Window):
     def __init__(self):
         super(Window, self).__init__()
         self.setupUi(self)
+        self.magic_filter = None
 
     def pkt_hasLayer(self, pkt, layer):
         if pkt.haslayer(layer):
@@ -21,10 +22,10 @@ class Packet_handler(Window):
         #checks if packet applies to filter
         #packet_copy=packet
         #current_dic = self.filter_dic
-        for name, protocols in self.dictionary:
+        self.magic_filter = self.magical()
+        for name, protocols in self.magic_filter:
             if self.protocol_verify(packet, protocols):
                 return [True, name]
-
         return [False, False]
 
     def protocol_verify(self,packet, protocols):
@@ -51,9 +52,11 @@ class Packet_handler(Window):
         packetino = packet
         self.add_row_to_cap_list_packets(packetino)
         filter_result = self.filter(packetino)
+        #self.add_row_to_mod_list_packets(packetino)
+        print(filter_result[0])
         if filter_result[0]:
             print("CAUGHT ONE")
-            packetino = self.modify(packetino, filter_result[1])
+            #packetino = self.modify(packetino, filter_result[1])
             #modifies the packet adds to modified list
             self.add_row_to_mod_list_packets(packetino)
         return packetino
