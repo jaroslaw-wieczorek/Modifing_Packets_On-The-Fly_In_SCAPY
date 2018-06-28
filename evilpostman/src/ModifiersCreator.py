@@ -52,15 +52,14 @@ from gui.dialog_modifiers_ui import Ui_DailogModifiers
 
 
 class Modifiers(QDialog, Ui_DailogModifiers):
-    def __init__(self, title : str):
+    def __init__(self, title:str, packet:Packet=None):
         super().__init__()
-        
         self.title = title
         self.left = 10
         self.top = 10
         self.setupUi(self)
         self.setupWindow()
-        
+        self.example_packet = packet
         
         self.show()
         self.fields=[]
@@ -70,18 +69,26 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         self.currentProtocolData=None
         
         self.dictionary = {}
-        
 
         for protocol in conf.layers:
             self.protocol_combo_box.addItem(protocol.__name__, userData=protocol)
         
+        if not self.example_packet is None:
+            self.addFromPacket()
+    
         self.protocol_combo_box.model().sort(0)
-         
         self.protocol_combo_box.activated.connect(self.handleActivated)
         self.add_push_button.clicked.connect(self.createTabWithProtocol)
         
         self.tab_widget.tabCloseRequested.connect(self.removeTab)
         self.tab_widget.setTabsClosable(True)
+        
+        
+        
+    def addFromPacket(self):
+        layers = self.example_packet : Packet
+        pass
+    
         
     
     def removeTab(self, index):
@@ -100,6 +107,7 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         self.add_push_button : QPushButton
         self.protocol_combo_box : QComboBox
         self.dialog_buttons : QDialogButtonBox
+        self.example_packet : Packet
          
         
     def getValues(self):
