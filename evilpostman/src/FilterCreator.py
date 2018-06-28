@@ -72,13 +72,14 @@ class Filters(QDialog, Ui_DailogFilter):
         
         self.tab_widget.tabCloseRequested.connect(self.removeTab)
         self.tab_widget.setTabsClosable(True)
-    
+        
     
     def removeTab(self, index):
         widget = self.tab_widget.widget(index)
         if widget is not None:
             widget.deleteLater()
         self.tab_widget.removeTab(index) 
+        
         
     def setupWindow(self):
         self.setWindowTitle(self.title)   
@@ -89,8 +90,26 @@ class Filters(QDialog, Ui_DailogFilter):
         self.add_push_button : QPushButton
         self.protocol_combo_box : QComboBox
         self.dialog_buttons : QDialogButtonBox
+         
+        
+    def getValues(self):
+        
+        self.tab_widget : QTabWidget
+        tab_number=self.tab_widget.count()
+        lineedits = self.tab_widget.findChildren(QLineEdit)
+        linelabels = self.tab_widget.findChildren(QLabel)
+     #   print("Widget:", self.tab_widget.widget(0))
+        
+        for tab_num in range(0,self.tab_widget.count()):
+            tab : QWidget = self.tab_widget.widget(tab_num)
+            protocol_name = self.tab_widget.tabText(tab_num)
+      
+            for label in tab.findChildren(QLabel):
+                label : QLabel
+                print(label.text())
                 
         
+        return 4
         
     def handleActivated(self, index):
         self.currentProtocolName = self.protocol_combo_box.itemText(index)
@@ -123,7 +142,6 @@ class Filters(QDialog, Ui_DailogFilter):
         self.vert_tab.setObjectName("ver_"+str(self.currentProtocolName))
         print(self.vert_tab)
     
-
         self.mapProtocolFields()
     
     def mapProtocolFields(self):
@@ -131,22 +149,12 @@ class Filters(QDialog, Ui_DailogFilter):
             save to fields variable tuples contains 3 values on attribute 
                    (field_name, scapy_field_type, set/default_value) 
         """
-             
         self.fields = []
         for i in self.currentProtocolData.fields_desc:
             self.fields.append((i.name, type(i), getattr(self.currentProtocolData, i.name, 0)))
         self.addFilter() 
 
-        
-        
-    def deleteTab(self):
-        self.tab_widget.removeTab() 
-
-        child : QWidget = self.tab_widget.findChild(QWidget, "tab_"+str(self.currentProtocolName))
-        print(child)
-        self.vert_tab.removeWidget(self.current_tab)
-      
-        self.current_tab = None
+        self.getValues()
             
 
     def addFilter(self):
@@ -188,5 +196,6 @@ if __name__ == '__main__':
 
    # u = Gui(UDP)
     ex = Filters("Filters")
+    ex.getValues()
     
     sys.exit(app.exec_())
