@@ -86,7 +86,8 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         
         
     def addFromPacket(self):
-        layers = self.example_packet : Packet
+        layers = self.example_packet 
+        
         pass
     
         
