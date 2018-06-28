@@ -36,7 +36,7 @@ class Packet_handler(Window):
                 protocol_curr = packet[protocol[0]]
                 if protocol_curr:
                     for value in protocol[1:]:
-                        if str(getattr(protocol_curr, value[0])) != value[1]:
+                        if str(getattr(protocol_curr, value[0])) != str(value[1]):
                             return False
             except:
                 return False
