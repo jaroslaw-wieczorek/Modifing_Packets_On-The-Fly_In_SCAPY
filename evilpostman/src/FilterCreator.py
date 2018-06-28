@@ -44,7 +44,7 @@ from gui.dialog_filters_ui import Ui_DailogFilter
 
 
 class Filters(QDialog, Ui_DailogFilter):
-    def __init__(self, title : str):
+    def __init__(self,  title:str, packet:Packet=None):
         super().__init__()
         
         self.title = title
@@ -52,6 +52,7 @@ class Filters(QDialog, Ui_DailogFilter):
         self.top = 10
         self.setupUi(self)
         self.setupWindow()
+        self.example_packet = packet
         
         
         self.show()
@@ -63,7 +64,9 @@ class Filters(QDialog, Ui_DailogFilter):
         
         self.dictionary = {}
         
-
+        if not self.example_packet is None:
+            self.addFromPacket()
+            
         for protocol in conf.layers:
             self.protocol_combo_box.addItem(protocol.__name__, userData=protocol)
         
