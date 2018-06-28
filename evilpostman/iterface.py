@@ -57,16 +57,10 @@ class Window(QMainWindow, Ui_MainWindow):
 
     def openModifiersCreator(self, filters_dict):
         title = "Kreator modifikatorów"
-        filters = []
+        protolist = []
         for name, protocols in filters_dict.items():
-            protolist = []
             protolist.append(name)
-            eptylista = []
-            for protocol in protocols:
-                eptylista.append(protocol[0])
-            protolist.append(eptylista)
-            filters.append(protolist)
-        self.modifiers = Modifiers(title,filters)
+        self.modifiers = Modifiers(title, protolist)
         if self.modifiers.exec_() == QDialog.Accepted:
             self.modifiers_diki = self.modifiers.getValues()
             
