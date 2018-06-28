@@ -41,9 +41,13 @@ class Window(QMainWindow, Ui_MainWindow):
     def set_button_funct(self, button, funct):
         button.clicked.connect(funct)
     
+    
     def openFilterCreator(self):
         title = "Kreator filtrów"
         self.filters = Filters(title)
+        if self.filters.exec_() == QDialog.Accepted:
+            print("HELLO")
+            tmp_dict=self.filters.getValues()
         
         
     def openModifiersCreator(self):

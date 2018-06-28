@@ -108,7 +108,6 @@ class Filters(QDialog, Ui_DailogFilter):
             protocol_name = self.tab_widget.tabText(tab_num)
             
             returned_list[tab_num].append(protocol_name)
-            print(returned_list)
             
             fields = tab.findChildren(QLabel)
             values = tab.findChildren(QLineEdit)
@@ -121,12 +120,12 @@ class Filters(QDialog, Ui_DailogFilter):
             returned_list.append([])
           
         del returned_list[-1]
-       
+        
 
         name = self.name_line_edit.text()
         self.dictionary[name] = returned_list
         
-        print(self.dictionary)
+        # print(self.dictionary)
         return self.dictionary
             
         
