@@ -42,7 +42,7 @@ class Window(QMainWindow, Ui_MainWindow):
             self.close()
 
     
-    def set_button_funct(self, button, funct):
+    def setButtonFunct(self, button, funct):
         button.clicked.connect(funct)
     
     
@@ -77,7 +77,6 @@ class Window(QMainWindow, Ui_MainWindow):
             self.filters_list_of_filters.setItem(newRowNum, 1, QTableWidgetItem(str(protolist)))
 
      
-                
     #  modifiers_list_of_mods
     def add_row_to_modifiers_list_of_mods(self, newFilter):
         for name, protocols in newFilter.items():
@@ -90,6 +89,7 @@ class Window(QMainWindow, Ui_MainWindow):
             self.modifiers_list_of_mods.setItem(newRowNum, 0, QTableWidgetItem(str(name)))
             self.modifiers_list_of_mods.setItem(newRowNum, 1, QTableWidgetItem(str(protolist)))
      
+        
     # cap_list_of_packets
     def add_row_to_cap_list_of_packets(self, pkt):
         newRowNum = self.cap_list_of_packets.rowCount()
@@ -100,18 +100,9 @@ class Window(QMainWindow, Ui_MainWindow):
         item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
         self.cap_list_of_packets.setItem(newRowNum, 0, item)
     
+    
     # modified_list_of_packets
     def add_row_to_modified_list_of_packets(self, pkt):
-        newRowNum = self.modified_list_of_packets.rowCount()
-        print("Nowy numer pakietu:", newRowNum)
-        self.modified_list_of_packets.insertRow(newRowNum)
-        item = QTableWidgetItem(pkt.summary())
-      #  print(item.flags())
-        item.setFlags(item.flags() ^ QtCore.Qt.ItemIsEditable)
-        self.modified_list_of_packets.setItem(newRowNum, 0, item)
-        
-              
-    def add_row_to_modified_list_of_packets (self, pkt):
         newRowNum = self.modified_list_of_packets.rowCount()
         print("Nowy numer pakietu:", newRowNum)
         self.modified_list_of_packets.insertRow(newRowNum)
@@ -129,24 +120,24 @@ class Window(QMainWindow, Ui_MainWindow):
         self.pkt = item.text()
         print(self.pkt)
     
+    
     def set_fit_width(self):
         self.modified_list_of_packets.horizontalHeader().setStretchLastSection(True)
         self.cap_list_of_packets.horizontalHeader().setStretchLastSection(True)
         self.filters_list_of_filters.horizontalHeader().setStretchLastSection(True)
         self.modifiers_list_of_mods.horizontalHeader().setStretchLastSection(True)
 
+
+
     def close_event_message_box(self, event):
         print("event")
         reply = QMessageBox.question(self, 'Zamykanie',
             "Czy napewno chcesz zakończyć? ", QMessageBox.Yes, QMessageBox.No)
         
-        
-        
-
-
+               
     def nothing(self):
         print("Do nothing!")
-        
+        `
 """        
 """
 

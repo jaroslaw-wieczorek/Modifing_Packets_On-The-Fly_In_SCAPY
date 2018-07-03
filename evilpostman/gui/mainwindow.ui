@@ -45,7 +45,7 @@
        <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideNone</enum>
@@ -70,7 +70,7 @@
            </size>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;br/&gt;Modyfikacja pakietów przebiega w nasŧępujący sposób: &lt;br/&gt;A) Metoda szybka:&lt;br/&gt;B) Metoda zaawansowana: &lt;br/&gt;&lt;br/&gt;1) Przechodzimy dalej i włączamy przechwytywanie pakietów:&lt;br/&gt;2) Sposoby tworzeni a filtrów:&lt;/p&gt;&lt;p&gt;Metoda szybka: &lt;br/&gt;Klikamy prawym przyciskiem myszy na pakiecie i wybieramy utwórz szablon. Przechodzimy do wygenerowanego filtra i wybieramy wartości które mają zostać zmodyfikowane.&lt;br/&gt;Następnie akceptujemy zmiany i od tego momentu pakiety będą przechwytywane i modyfikowane.&lt;/p&gt;&lt;p&gt;Metoda zaawansowana: &lt;br/&gt;Klikamy na przycisk utwórz filtry&lt;br/&gt;Przechodzimy do wygenerowanego filtra i wybieramy wartości które mają zostać zmodyfikowane &lt;/p&gt;&lt;p&gt;Następnie akceptujemy zmiany i od tego momentu pakiety będą przechwytywane&lt;br/&gt;i modyfikowane.&lt;/p&gt;&lt;p&gt;4) Wysyłamy pakiet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -222,9 +222,18 @@
         </item>
         <item row="0" column="0" colspan="3">
          <widget class="QTableWidget" name="modifiers_list_of_mods">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
           <column>
            <property name="text">
             <string>Nazwa modyfikatora</string>
+           </property>
+           <property name="toolTip">
+            <string notr="true"/>
            </property>
            <property name="textAlignment">
             <set>AlignCenter</set>
@@ -232,7 +241,7 @@
           </column>
           <column>
            <property name="text">
-            <string>Przypisany filtr</string>
+            <string>Modyfikator</string>
            </property>
            <property name="textAlignment">
             <set>AlignCenter</set>

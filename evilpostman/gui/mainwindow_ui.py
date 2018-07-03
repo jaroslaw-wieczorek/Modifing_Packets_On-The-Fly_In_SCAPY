@@ -108,6 +108,7 @@ class Ui_MainWindow(object):
         self.modifiers_button_create_modifier.setObjectName("modifiers_button_create_modifier")
         self.gridLayout_4.addWidget(self.modifiers_button_create_modifier, 2, 1, 1, 1)
         self.modifiers_list_of_mods = QtWidgets.QTableWidget(self.modifiers_tab)
+        self.modifiers_list_of_mods.setMinimumSize(QtCore.QSize(100, 0))
         self.modifiers_list_of_mods.setObjectName("modifiers_list_of_mods")
         self.modifiers_list_of_mods.setColumnCount(2)
         self.modifiers_list_of_mods.setRowCount(0)
@@ -157,7 +158,7 @@ class Ui_MainWindow(object):
         self.actionFiltry.setObjectName("actionFiltry")
 
         self.retranslateUi(MainWindow)
-        self.tab_widget.setCurrentIndex(3)
+        self.tab_widget.setCurrentIndex(0)
         self.cap_button_sniff.clicked.connect(self.cap_button_sniff.update)
         self.cap_list_of_packets.cellDoubleClicked['int','int'].connect(self.cap_list_of_packets.selectRow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -165,7 +166,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "EvilPostman"))
-        self.info_label_instruction.setText(_translate("MainWindow", "<html><head/><body><p><br/><br/>Modyfikacja pakietów przebiega w nasŧępujący sposób: <br/>A) Metoda szybka:<br/>B) Metoda zaawansowana: <br/><br/>1) Przechodzimy dalej i włączamy przechwytywanie pakietów:<br/>2) Sposoby tworzeni a filtrów:</p><p>Metoda szybka: <br/>Klikamy prawym przyciskiem myszy na pakiecie i wybieramy utwórz szablon. Przechodzimy do wygenerowanego filtra i wybieramy wartości które mają zostać zmodyfikowane.<br/>Następnie akceptujemy zmiany i od tego momentu pakiety będą przechwytywane i modyfikowane.</p><p>Metoda zaawansowana: <br/>Klikamy na przycisk utwórz filtry<br/>Przechodzimy do wygenerowanego filtra i wybieramy wartości które mają zostać zmodyfikowane </p><p>Następnie akceptujemy zmiany i od tego momentu pakiety będą przechwytywane<br/>i modyfikowane.</p><p>4) Wysyłamy pakiet</p></body></html>"))
+        self.info_label_instruction.setText(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
         self.info_button_next.setText(_translate("MainWindow", "Dalej"))
         self.info_label_title.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Tryb działania modyfikatora pakietów:</span></p></body></html>"))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.info_tab), _translate("MainWindow", "Informacje"))
@@ -190,7 +191,7 @@ class Ui_MainWindow(object):
         item = self.modifiers_list_of_mods.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Nazwa modyfikatora"))
         item = self.modifiers_list_of_mods.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Przypisany filtr"))
+        item.setText(_translate("MainWindow", "Modyfikator"))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.modifiers_tab), _translate("MainWindow", "Modyfikatory"))
         self.modified_button_show.setText(_translate("MainWindow", "Pokaż pakiet"))
         self.modified_button_back.setText(_translate("MainWindow", "powrót"))

@@ -51,6 +51,7 @@ print(lib_path)
 from gui.dialog_modifiers_ui import Ui_DailogModifiers
 
 
+
 class Modifiers(QDialog, Ui_DailogModifiers):
     def __init__(self, title:str, get_filters):
         super().__init__()
@@ -68,7 +69,6 @@ class Modifiers(QDialog, Ui_DailogModifiers):
         self.currentFilterData=None
         self.filters_combo_box : QComboBox
         self.dictionary = {}
-
 
 
         for filtr in self.get_filters:
