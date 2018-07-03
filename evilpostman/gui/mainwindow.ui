@@ -70,7 +70,7 @@
            </size>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;1) Przechodzimy do karty - &amp;quot;Przechwytywanie&amp;quot;. Następnie włączamy sniffowanie pakietów. &lt;br/&gt;2) Przechwytywane dane pojawiają sie na liście pakietów. &lt;br/&gt;3) Tworzymy filtr (dwa sposoby):&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Dwie opcje:&lt;br/&gt;a) Wybieramy pakiet i tworzymy na jego podstawie filtr za pomocą przycisku &amp;quot;Utwórz na podstawie pakietu&amp;quot;.&lt;br/&gt;b ) Przechodzimy dalej do karty &amp;quot;Filtry&amp;quot; w celu ręczenego utworzenia filtra.&lt;br/&gt;c) Należy pamiętać, aby nadać odpowiednią nazwę dla filtru.&lt;br/&gt;4) Przechodzimy do karty Modyfikatory i tworzymy modyfikator, a w nazwie filtru podajemy nazwę utworzonego filtru.&lt;br/&gt;5) Lista zmodyfikowanych pakietów jest widoczna w zakładce &amp;quot;lista zmodyfikowanych&amp;quot;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -96,7 +96,7 @@
            </size>
           </property>
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Tryb działania modyfikatora pakietów:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Instrukcja działania programu Evilpostman: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
          </widget>
         </item>

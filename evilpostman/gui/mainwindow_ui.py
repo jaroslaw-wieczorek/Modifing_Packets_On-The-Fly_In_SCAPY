@@ -166,9 +166,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "EvilPostman"))
-        self.info_label_instruction.setText(_translate("MainWindow", "<html><head/><body><p><br/></p></body></html>"))
+        self.info_label_instruction.setText(_translate("MainWindow", "<html><head/><body><p align=\"justify\">1) Przechodzimy do karty - &quot;Przechwytywanie&quot;. Następnie włączamy sniffowanie pakietów. <br/>2) Przechwytywane dane pojawiają sie na liście pakietów. <br/>3) Tworzymy filtr (dwa sposoby):</p><p align=\"justify\">Dwie opcje:<br/>a) Wybieramy pakiet i tworzymy na jego podstawie filtr za pomocą przycisku &quot;Utwórz na podstawie pakietu&quot;.<br/>b ) Przechodzimy dalej do karty &quot;Filtry&quot; w celu ręczenego utworzenia filtra.<br/>c) Należy pamiętać, aby nadać odpowiednią nazwę dla filtru.<br/>4) Przechodzimy do karty Modyfikatory i tworzymy modyfikator, a w nazwie filtru podajemy nazwę utworzonego filtru.<br/>5) Lista zmodyfikowanych pakietów jest widoczna w zakładce &quot;lista zmodyfikowanych&quot;<br/></p></body></html>"))
         self.info_button_next.setText(_translate("MainWindow", "Dalej"))
-        self.info_label_title.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Tryb działania modyfikatora pakietów:</span></p></body></html>"))
+        self.info_label_title.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:14pt; font-weight:600;\">Instrukcja działania programu Evilpostman: </span></p></body></html>"))
         self.tab_widget.setTabText(self.tab_widget.indexOf(self.info_tab), _translate("MainWindow", "Informacje"))
         self.cap_button_back.setText(_translate("MainWindow", "Powrót"))
         self.cap_button_create_filter.setText(_translate("MainWindow", "Utwórz filtr na podstawie pakietu"))
