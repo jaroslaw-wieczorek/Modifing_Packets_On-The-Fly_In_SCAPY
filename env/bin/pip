@@ -1,4 +1,4 @@
-#!/home/afar/Modifing_Packets_On-The-Fly_In_SCAPY/env/bin/python3
+#!/home/afar/Dokumenty/Modifing_Packets_On-The-Fly_In_SCAPY/env/bin/python3.6
 
 # -*- coding: utf-8 -*-
 import re

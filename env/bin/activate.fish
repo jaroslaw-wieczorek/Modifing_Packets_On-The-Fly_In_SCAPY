@@ -36,7 +36,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/afar/Modifing_Packets_On-The-Fly_In_SCAPY/env"
+set -gx VIRTUAL_ENV "/home/afar/Dokumenty/Modifing_Packets_On-The-Fly_In_SCAPY/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

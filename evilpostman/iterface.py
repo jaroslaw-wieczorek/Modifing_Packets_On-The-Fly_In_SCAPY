@@ -137,7 +137,7 @@ class Window(QMainWindow, Ui_MainWindow):
                
     def nothing(self):
         print("Do nothing!")
-        `
+        
 """        
 """
 

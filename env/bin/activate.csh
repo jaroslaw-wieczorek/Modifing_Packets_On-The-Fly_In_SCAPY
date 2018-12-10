@@ -7,7 +7,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/home/afar/Modifing_Packets_On-The-Fly_In_SCAPY/env"
+setenv VIRTUAL_ENV "/home/afar/Dokumenty/Modifing_Packets_On-The-Fly_In_SCAPY/env"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

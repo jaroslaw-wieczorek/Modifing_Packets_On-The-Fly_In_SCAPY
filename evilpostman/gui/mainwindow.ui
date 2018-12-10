@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,280 +18,246 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="0" column="1">
-     <widget class="QTabWidget" name="tab_widget">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>16777215</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
-      <property name="tabPosition">
-       <enum>QTabWidget::North</enum>
-      </property>
-      <property name="tabShape">
-       <enum>QTabWidget::Rounded</enum>
-      </property>
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <property name="elideMode">
-       <enum>Qt::ElideNone</enum>
-      </property>
-      <widget class="QWidget" name="info_tab">
-       <attribute name="title">
-        <string>Informacje</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_6">
-        <item row="2" column="0">
-         <widget class="QLabel" name="info_label_instruction">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>16777215</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;1) Przechodzimy do karty - &amp;quot;Przechwytywanie&amp;quot;. Następnie włączamy sniffowanie pakietów. &lt;br/&gt;2) Przechwytywane dane pojawiają sie na liście pakietów. &lt;br/&gt;3) Tworzymy filtr (dwa sposoby):&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Dwie opcje:&lt;br/&gt;a) Wybieramy pakiet i tworzymy na jego podstawie filtr za pomocą przycisku &amp;quot;Utwórz na podstawie pakietu&amp;quot;.&lt;br/&gt;b ) Przechodzimy dalej do karty &amp;quot;Filtry&amp;quot; w celu ręczenego utworzenia filtra.&lt;br/&gt;c) Należy pamiętać, aby nadać odpowiednią nazwę dla filtru.&lt;br/&gt;4) Przechodzimy do karty Modyfikatory i tworzymy modyfikator, a w nazwie filtru podajemy nazwę utworzonego filtru.&lt;br/&gt;5) Lista zmodyfikowanych pakietów jest widoczna w zakładce &amp;quot;lista zmodyfikowanych&amp;quot;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-          </property>
-          <property name="wordWrap">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="info_button_next">
-          <property name="text">
-           <string>Dalej</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="info_label_title">
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:600;&quot;&gt;Instrukcja działania programu Evilpostman: &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="capture_tab">
-       <attribute name="title">
-        <string>Przechwytywanie</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="5" column="0">
-         <widget class="QPushButton" name="cap_button_back">
-          <property name="text">
-           <string>Powrót</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QPushButton" name="cap_button_create_filter">
-          <property name="text">
-           <string>Utwórz filtr na podstawie pakietu</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="3">
-         <widget class="QPushButton" name="cap_button_next">
-          <property name="text">
-           <string>Dalej</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="2">
-         <widget class="QPushButton" name="cap_button_sniff">
-          <property name="text">
-           <string>Włącz przechwytywanie pakietów</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" colspan="4">
-         <widget class="QTableWidget" name="cap_list_of_packets">
-          <column>
-           <property name="text">
-            <string>Pakiet</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="filters_tab">
-       <attribute name="title">
-        <string>Filtry</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="4" column="1">
-         <widget class="QPushButton" name="filters_button_create_filter">
-          <property name="text">
-           <string>Utwórz filtr</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QPushButton" name="filters_button_back">
-          <property name="text">
-           <string>Powrót</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="2">
-         <widget class="QPushButton" name="filters_button_next">
-          <property name="text">
-           <string>Dalej</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="filters_list_of_filters">
-          <column>
-           <property name="text">
-            <string>Nazwa filtra</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Filtr</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="modifiers_tab">
-       <attribute name="title">
-        <string>Modyfikatory</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="2" column="0">
-         <widget class="QPushButton" name="modifiers_button_back">
-          <property name="text">
-           <string>Powrót</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2">
-         <widget class="QPushButton" name="modifiers_button_next">
-          <property name="text">
-           <string>Dalej</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QPushButton" name="modifiers_button_create_modifier">
-          <property name="text">
-           <string>Utwórz modyfikator</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="modifiers_list_of_mods">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <column>
-           <property name="text">
-            <string>Nazwa modyfikatora</string>
-           </property>
-           <property name="toolTip">
-            <string notr="true"/>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Modyfikator</string>
-           </property>
-           <property name="textAlignment">
-            <set>AlignCenter</set>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="modified_tab">
-       <attribute name="title">
-        <string>Lista zmodyfikwanych</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="1">
-         <widget class="QPushButton" name="modified_button_show">
-          <property name="text">
-           <string>Pokaż pakiet</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="modified_button_back">
-          <property name="text">
-           <string>powrót</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="modified_button_stop">
-          <property name="text">
-           <string>Zatrzymaj działanie</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" colspan="3">
-         <widget class="QTableWidget" name="modified_list_of_packets">
-          <column>
-           <property name="text">
-            <string>Pakiet</string>
-           </property>
-          </column>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QTabWidget" name="tab_widget">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="mouseTracking">
+         <bool>false</bool>
+        </property>
+        <property name="tabPosition">
+         <enum>QTabWidget::North</enum>
+        </property>
+        <property name="tabShape">
+         <enum>QTabWidget::Rounded</enum>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <property name="elideMode">
+         <enum>Qt::ElideNone</enum>
+        </property>
+        <widget class="QWidget" name="info_tab">
+         <attribute name="title">
+          <string>Informacje</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="1" column="0">
+           <widget class="QPushButton" name="info_button_next">
+            <property name="text">
+             <string>Dalej</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="capture_tab">
+         <attribute name="title">
+          <string>Przechwytywanie</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="5" column="0">
+           <widget class="QPushButton" name="cap_button_back">
+            <property name="text">
+             <string>Powrót</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="cap_button_create_filter">
+            <property name="text">
+             <string>Utwórz filtr na podstawie pakietu</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3">
+           <widget class="QPushButton" name="cap_button_next">
+            <property name="text">
+             <string>Dalej</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <widget class="QPushButton" name="cap_button_sniff">
+            <property name="text">
+             <string>Włącz przechwytywanie pakietów</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="4">
+           <widget class="QTableWidget" name="cap_list_of_packets">
+            <column>
+             <property name="text">
+              <string>Pakiet</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="filters_tab">
+         <attribute name="title">
+          <string>Filtry</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="4" column="1">
+           <widget class="QPushButton" name="filters_button_create_filter">
+            <property name="text">
+             <string>Utwórz filtr</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="filters_button_back">
+            <property name="text">
+             <string>Powrót</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <widget class="QPushButton" name="filters_button_next">
+            <property name="text">
+             <string>Dalej</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTableWidget" name="filters_list_of_filters">
+            <column>
+             <property name="text">
+              <string>Nazwa filtra</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Filtr</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="modifiers_tab">
+         <attribute name="title">
+          <string>Modyfikatory</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="2" column="0">
+           <widget class="QPushButton" name="modifiers_button_back">
+            <property name="text">
+             <string>Powrót</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="modifiers_button_next">
+            <property name="text">
+             <string>Dalej</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="modifiers_button_create_modifier">
+            <property name="text">
+             <string>Utwórz modyfikator</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTableWidget" name="modifiers_list_of_mods">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <column>
+             <property name="text">
+              <string>Nazwa modyfikatora</string>
+             </property>
+             <property name="toolTip">
+              <string notr="true"/>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Modyfikator</string>
+             </property>
+             <property name="textAlignment">
+              <set>AlignCenter</set>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="modified_tab">
+         <attribute name="title">
+          <string>Lista zmodyfikwanych</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="1">
+           <widget class="QPushButton" name="modified_button_show">
+            <property name="text">
+             <string>Pokaż pakiet</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="modified_button_back">
+            <property name="text">
+             <string>powrót</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="modified_button_stop">
+            <property name="text">
+             <string>Zatrzymaj działanie</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTableWidget" name="modified_list_of_packets">
+            <column>
+             <property name="text">
+              <string>Pakiet</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -298,7 +267,7 @@
      <x>0</x>
      <y>0</y>
      <width>690</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

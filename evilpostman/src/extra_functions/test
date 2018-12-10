@@ -1,0 +1,98 @@
+print('Initializing...')
+import logging as log
+import sys
+
+import pandas as pd
+from pcapng.blocks import EnhancedPacket
+from pcapng.scanner import FileScanner
+from scapy.layers.l2 import Ether, raw
+
+log.getLogger().setLevel(log.INFO)
+
+
+# RUN: python3 MakeTrafficStatistics.py path/to/file.pcapng output/path
+
+def parse_paths(input_path):
+    splitted_input_path = input_path.split('/')
+    _file_path = '/'
+    _file_path = _file_path.join(splitted_input_path[:-1])
+    splitted_input_path = splitted_input_path[-1].split('.')
+    _file_name = splitted_input_path[0]
+    _extension = splitted_input_path[-1]
+    return _file_path, _file_name, _extension
+
+
+def prepare_packet(block):
+    decoded = Ether(block.packet_data)
+    pckt = {'Source': decoded.src,
+            'Destination': decoded.dst,
+            'Time': block.timestamp,
+            'protocol': decoded.type or decoded.payload.name,
+            'payload': str(raw(decoded.payload).hex()).upper()}
+    return pckt
+
+
+def make_df(_file_path, _file_name, _extension):
+    print('Making df from {0}.{1} in progress...'.format(_file_name, _extension))
+    with open('{0}/{1}.{2}'.format(_file_path, _file_name, _extension), 'rb') as fp:
+        scanner = FileScanner(fp)
+        packets = []
+        for block in scanner:
+            if isinstance(block, EnhancedPacket) and block.interface.link_type == 1:
+                try:
+                    result = prepare_packet(block)
+                    packets.append(result)
+                except Exception as e:
+                    print(e)
+    print('Df ready!')
+    return pd.DataFrame(packets)
+
+
+def make_chart1(data, output_path):
+    log.info('Start making first chart')
+    data = data.drop(['Time'], axis=1)
+    columns = data.columns.tolist()
+    df = data[0:data.shape[0]]
+    for each in columns:
+        log.info(f" for {each}")
+        count = df[each].value_counts()
+        pie_bar = count.plot(kind='bar', title=each)
+        fig = pie_bar.get_figure()
+        fig.savefig(output_path + '/CHART1__BarPlot' + '__' + str(each) + '.png')
+    log.info('Chart1 DONE')
+
+
+def make_chart2(data, output_path):
+    # TODO
+    pass
+
+
+def make_chart3(data, output_path):
+    # TODO
+    pass
+
+
+def make_chart4(data, output_path):
+    # TODO
+    pass
+
+
+def make_chart5(data, output_path):
+    # TODO
+    pass
+
+
+if __name__ == '__main__':
+    file_path, file_name, extension = parse_paths(sys.argv[1])
+    plot_path = '{0}/{1}.png'.format(sys.argv[2], file_name)
+
+    if extension == 'pcapng':
+        df = make_df(file_path, file_name, extension)
+
+        make_chart1(df, 'stats/plots')
+        make_chart2(df, plot_path)
+        make_chart3(df, plot_path)
+        make_chart4(df, plot_path)
+        make_chart5(df, plot_path)
+    else:
+        print('Input file must be in pcapng format!')
