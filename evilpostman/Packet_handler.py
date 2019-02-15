@@ -15,14 +15,13 @@ class Packet_handler(Window):
         self.magic_filter = {}
         self.magic_modi = {}
 
-
     def filter_dialog(self):
         self.magic_filter.update(self.openFilterCreator())
-        #print(self.magic_filter)
+        print(self.magic_filter)
 
     def modifier_dialog(self):
         self.magic_modi.update(self.openModifiersCreator(self.magic_filter))
-        #print(self.magic_filter)
+        print(self.magic_modi)
 
     def pkt_hasLayer(self, pkt, layer):
         if pkt.haslayer(layer):
@@ -35,11 +34,12 @@ class Packet_handler(Window):
 
         #print(self.magic_filter)
         for name, protocols in self.magic_filter.items():
+            print(name, protocols)
             if self.protocol_verify(packet, protocols):
                 return [True, name]
         return [False, False]
 
-    def protocol_verify(self,packet, protocols):
+    def protocol_verify(self, packet, protocols):
         for protocol in protocols:
             try:
                 protocol_curr = packet[protocol[0]]
@@ -47,17 +47,22 @@ class Packet_handler(Window):
                     for value in protocol[1:]:
                         if str(getattr(protocol_curr, value[0])) != str(value[1]):
                             return False
-            except:
+            except Exception as err:
                 return False
         return True
+
     def modify(self, packet, filter_name):
         #modifies packet
         print(self.magic_modi)
         for protocol in self.magic_modi[filter_name]:
-             if packet[protocol[0]]:
-                  for value in protocol[1:]:
-                      #getattr(protocol_curr, value[0]) != value[1]:
-                      setattr(packet[protocol[0]], value[0], value[1])
+            if packet[protocol[0]]:
+                for value in protocol[1:]:
+                    # getattr(protocol_curr, value[0]) != value[1]:
+                    # packet[protocol[0]]: UDP
+                    _type = type(getattr(packet[protocol[0]], value[0]))
+                    setattr(packet[protocol[0]], value[0], _type(value[1]))
+
+
         return packet
 
     def handle_my_packet(self, packet):

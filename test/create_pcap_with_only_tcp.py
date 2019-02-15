@@ -1,14 +1,19 @@
+# usr/env/bin python
+# -*- coding:utf-8 -*-
+import os
+import sys
+import queue
+import threading
 import multiprocessing
 
 from scapy.all import *
+import scapy_http.http as http
 from netfilterqueue import NetfilterQueue, COPY_PACKET
-from scapy.layers.inet import IP, TCP
 from scapy.layers.l2 import Ether
-from evilpostman.iterface import Window
-from evilpostman.pyqt_scapy_item import PyQtScapyTableWidgetItem
-import queue
-import threading
-from evilpostman.Packet_handler import Packet_handler
+from scapy.layers.inet import IP, TCP
+
+
+GLOBAL_pkts = []
 
 
 class NFQController(threading.Thread):
@@ -31,23 +36,33 @@ class QueuePacketCatcher:
         self.captured_packets = list()
         self.runing = False
         self.nfqueue = NetfilterQueue()
-        self.nfqueue.bind(1, self.tamper, mode=COPY_PACKET)
+        self.nfqueue.bind(1, self.preprocesing_packets, mode=COPY_PACKET)
         self.qworker = NFQController(self.nfqueue)
         self.directory = "iptables-backup"
         self.backup = "backup"
-        self.handler = Packet_handler()
+        self.http_sessions = {}
 
-    def tamper(self, packet):
-        pkt: Packet = IP(packet.get_payload())
-        # print(pkt.dst)
-        pkt: Packet = self.handler.handle_my_packet(pkt)
+    def get_whole_http(self, packet):
+        # this is our callback on nfqueue when http session is gather
+        pass
+
+    def preprocesing_packets(self, packet):
+        pkt = IP(packet.get_payload())
+        http_payload = b""
+        http_header_exists = False
+        image = b""
+        if pkt.haslayer(TCP) and pkt[TCP].haslayer(http.HTTP):
+            GLOBAL_pkts.append(pkt)
+
+        """ PACKET NFQEUEU TAMPER """
+
         packet.set_payload(bytes(pkt))
         packet.accept()
 
     def start_capture(self):
         if not self.runing:
             self.backupIPTables(self.directory, self.backup)
-            os.popen("iptables -A INPUT -j NFQUEUE --queue-num 1")
+            os.popen("iptables -A INPUT -p tcp -j NFQUEUE --queue-num 1")
             self.qworker = NFQController(self.nfqueue)
             self.qworker.daemon = True
             self.runing = True
@@ -87,4 +102,23 @@ class QueuePacketCatcher:
         else:
             print("Can't load iptables rules (dir not exist) - clean iptables")
             os.popen("iptables -F")
-            
+
+
+def scapy_callback(pkt):
+    pass
+
+if __name__ == '__main__':
+    nfqueue = QueuePacketCatcher()
+    nfqueue.start_capture()
+
+    while True:
+        try:
+            pass
+        except KeyboardInterrupt as err:
+            break
+
+        except Exception as err:
+            print(err)
+
+wrpcap('test.pcap', GLOBAL_pkts)
+print("done")

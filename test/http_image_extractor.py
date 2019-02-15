@@ -9,12 +9,6 @@ import zlib
 from scapy_http.http import *
 
 
-iface = conf.iface
-print(iface)
-
-output_path = './imgs/'
-
-# Given the payload, try to extract the payload and write to file
 def extract_payload(http_headers, payload, output_path):
     print('extract')
     payload_type = http_headers["Content-Type"].split("/")[1].split(";")[0]
@@ -36,6 +30,48 @@ def extract_payload(http_headers, payload, output_path):
     fd = open(file_path, "wb")
     fd.write(file)
     fd.close()
+
+
+def stripimg(packet):
+        http_payload = b""
+
+        try:
+            if packet.haslayer(TCP):
+                payload = packet[TCP].payload
+                http_header_exists = False
+                try:
+                    http_header = payload[payload.index(b"HTTP/1.1"):payload.index(b"\r\n\r\n")+2]
+                    print("http_header:", http_header)
+
+                    if http_header:
+                        http_header_exists = True
+                except:
+                    pass
+                if not http_header_exists and http_payload:
+                    http_payload += payload
+
+                elif http_header_exists and http_payload:
+                    http_header_raw = http_payload[:http_payload.index(b"\r\n\r\n")+2]
+                    http_header_parsed = dict(re.findall(r"(?P<name>.*?): (?P<value>.*?)\r\n", http_header_raw.decode("utf8")))
+
+                    if "Content-Type" in http_header_parsed.keys():
+
+                        if "image" in http_header_parsed["Content-Type"]:
+                            image_payload = http_payload[http_payload.index(b"\r\n\r\n")+4:]
+
+                            if image_payload:
+                                extract_payload(http_header_parsed, image_payload, output_path)
+                    http_payload = payload
+                elif http_header_exists and not http_payload:
+                    http_payload = payload
+        except:
+            pass
+
+
+iface = conf.iface
+print(iface)
+
+output_path = './imgages/'
 
 
 data = b''
@@ -101,40 +137,4 @@ def callback(pkt):
             http_payload = b""
 
 
-def stripimg(packet):
-        http_payload = b""
-
-        try:
-            if packet.haslayer(TCP):
-                payload = packet[TCP].payload
-                http_header_exists = False
-                try:
-                    http_header = payload[payload.index(b"HTTP/1.1"):payload.index(b"\r\n\r\n")+2]
-                    print("http_header:", http_header)
-
-                    if http_header:
-                        http_header_exists = True
-                except:
-                    pass
-                if not http_header_exists and http_payload:
-                    http_payload += payload
-
-                elif http_header_exists and http_payload:
-                    http_header_raw = http_payload[:http_payload.index(b"\r\n\r\n")+2]
-                    http_header_parsed = dict(re.findall(r"(?P<name>.*?): (?P<value>.*?)\r\n", http_header_raw.decode("utf8")))
-
-                    if "Content-Type" in http_header_parsed.keys():
-
-                        if "image" in http_header_parsed["Content-Type"]:
-                            image_payload = http_payload[http_payload.index(b"\r\n\r\n")+4:]
-
-                            if image_payload:
-                                extract_payload(http_header_parsed, image_payload, output_path)
-                    http_payload = payload
-                elif http_header_exists and not http_payload:
-                    http_payload = payload
-        except:
-            pass
-
-sniff(iface=iface, prn=callback)
 

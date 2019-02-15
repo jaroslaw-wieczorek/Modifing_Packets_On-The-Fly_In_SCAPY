@@ -50,8 +50,11 @@ class Window(QMainWindow, Ui_MainWindow):
         title = "Kreator filtrów"
         self.filters = Filters(title)
         if self.filters.exec_() == QDialog.Accepted:
+            if not self.filters.getValues():
+                print("Empty values !!")
             #print(tmp_dict)
             self.add_row_to_filters_list_of_filters(self.filters.getValues())
+
             return self.filters.getValues()
 
 
